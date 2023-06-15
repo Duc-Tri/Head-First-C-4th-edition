@@ -3,11 +3,11 @@
     // HoneyVault is a static class that keeps track of the honey and nectar in the hive.Bees use the ConsumeHoney method, which checks if there’s enough honey to do their jobs, and if so subtracts the amount requested.
     internal static class HoneyVault
     {
-        public const float NECTAR_CONVERSION_RATIO = 0.9f; //0.19f;
+        public const float NECTAR_CONVERSION_RATIO = 0.19f; //0.19f;
         public const float LOW_LEVEL_WARNING = 10f;
 
-        private static float honey = 250f;
-        private static float nectar = 1000f;
+        private static float honey = 25f;
+        private static float nectar = 100f;
 
         // The CollectNectar method is called by the NectarCollector bee each shift.It takes a parameter, amount. If amount is greater than zero, it adds it to the nectar field. 
         public static void CollectNectar(float amount)

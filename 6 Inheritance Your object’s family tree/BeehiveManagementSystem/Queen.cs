@@ -13,7 +13,7 @@ namespace BeehiveManagementSystem
 
         private Bee[] workers = new Bee[0];
         private float eggs = 0;
-        private float unassignedWorkers;
+        public float UnassignedWorkers { get; private set; }
         public string StatusReport { get; private set; }
         public override float CostPerShift { get => 2.15f; }
 
@@ -22,7 +22,7 @@ namespace BeehiveManagementSystem
 
             // She starts off with three unassigned workers—her constructor calls the AssignBee method three times to create three worker bees, one of each type.
             eggs = 0;
-            unassignedWorkers = 3; // IMPORTANT !
+            UnassignedWorkers = 3; // IMPORTANT !
             AssignBee(BEE_NECTARCOLLECTOR);
             AssignBee(BEE_HONEYMANUFACTURER);
             AssignBee(BEE_EGGCARE);
@@ -34,9 +34,9 @@ namespace BeehiveManagementSystem
         /// <param name="worker">Worker to add to the workers array.</param>
         private void AddWorker(Bee worker)
         {
-            if (unassignedWorkers >= 1)
+            if (UnassignedWorkers >= 1)
             {
-                unassignedWorkers--;
+                UnassignedWorkers--;
                 Array.Resize(ref workers, workers.Length + 1);
                 workers[workers.Length - 1] = worker;
             }
@@ -49,7 +49,7 @@ namespace BeehiveManagementSystem
             if (eggs >= eggsToConvert)
             {
                 eggs -= eggsToConvert;
-                unassignedWorkers += eggsToConvert;
+                UnassignedWorkers += eggsToConvert;
             }
         }
 
@@ -62,7 +62,7 @@ namespace BeehiveManagementSystem
 
             StatusReport = HoneyVault.StatusReport + "\n==========================\n" +
                 "■ " + eggs + " Eggs\n■ " +
-                unassignedWorkers + " unassigned Workers\n■ " +
+                UnassignedWorkers + " unassigned Workers\n■ " +
                 WorkerStatus(BEE_EGGCARE) + "\n■ " +
                 WorkerStatus(BEE_NECTARCOLLECTOR) + "\n■ " +
                 WorkerStatus(BEE_HONEYMANUFACTURER) +
@@ -111,7 +111,7 @@ namespace BeehiveManagementSystem
                 worker.WorkTheNextShift();
 
             // It consumes honey for each unassigned worker.The             HONEY_PER_UNASSIGNED_WORKER const tracks how much each one consumes per shift.
-            HoneyVault.ConsumeHoney(HONEY_PER_UNASSIGNED_WORKER * unassignedWorkers);
+            HoneyVault.ConsumeHoney(HONEY_PER_UNASSIGNED_WORKER * UnassignedWorkers);
 
             //  Finally, it calls its UpdateStatusReport method.
             UpdateStatusReport();

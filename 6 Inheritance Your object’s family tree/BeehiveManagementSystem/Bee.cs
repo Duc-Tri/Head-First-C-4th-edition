@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BeehiveManagementSystem
 {
     // Bee is the base class for all of the bee classes. Its WorkTheNextShift method calls the Honey Vault's ConsumeHoney method, and if it returns true calls DoJob.
-    internal class Bee
+    internal abstract class Bee
     {
         public const string BEE_QUEEN = "Queen";
         public const string BEE_EGGCARE = "EggCare";
@@ -15,7 +15,7 @@ namespace BeehiveManagementSystem
         public const string BEE_NECTARCOLLECTOR = "NectarCollector";
 
         public string Job { get; private set; }
-        public virtual float CostPerShift { get; }
+        public abstract float CostPerShift { get; }
 
         public Bee(string j)
         {
