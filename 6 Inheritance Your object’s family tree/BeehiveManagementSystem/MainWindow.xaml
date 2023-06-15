@@ -1,0 +1,38 @@
+﻿<Window x:Class="BeehiveManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeehiveManagementSystem"
+        mc:Ignorable="d"
+        Title="Beehive Management System" Height="325" Width="625" Background="#FFEDCB50">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,2,0,0" Grid.RowSpan="2">
+            <Label Content="Job Assignments" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+            <ComboBox x:Name="jobSelector" HorizontalAlignment="Center" Margin="20" Width="200" IsReadOnly="True" SelectedIndex="0" >
+                <!--
+                <ListBoxItem Content="Nectar Collector"/>
+                <ListBoxItem Content="Honey Manufacturer"/>
+                <ListBoxItem  Content="Egg Care"/>
+                -->
+            </ComboBox>
+            <Button x:Name="btnAssignJob" Content="Assign this job to a bee" HorizontalAlignment="Center" Grid.Row="1"  Click="Button_AssignJobToABee" FontSize="14" FontWeight="Bold" Width="200"/>
+        </StackPanel >
+
+        <Button x:Name="btnWorkNextShift" Content="Work the next shift" HorizontalAlignment="Center" Margin="10" Grid.Row="2" VerticalAlignment="Center" Width="200" FontSize="14" FontWeight="Bold" Click="Button_WorkTheNextShift"/>
+
+
+        <Label Content="Queen's Report" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Grid.Column="1"/>
+        <TextBox x:Name="statusReport" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.RowSpan="2"  Height="220" Width="270"/>
+    </Grid>
+</Window>
