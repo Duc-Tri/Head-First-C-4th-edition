@@ -11,7 +11,7 @@ namespace BeehiveManagementSystem
         private const float EGGS_PER_SHIFT = 0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
 
-        private Bee[] workers = new Bee[0];
+        private IWorker[] workers = new IWorker[0];
         private float eggs = 0;
         public float UnassignedWorkers { get; private set; }
         public string StatusReport { get; private set; }
@@ -32,7 +32,7 @@ namespace BeehiveManagementSystem
         /// Expand the workers array by one slot and add a Bee reference.
         /// </summary>
         /// <param name="worker">Worker to add to the workers array.</param>
-        private void AddWorker(Bee worker)
+        private void AddWorker(IWorker worker)
         {
             if (UnassignedWorkers >= 1)
             {
