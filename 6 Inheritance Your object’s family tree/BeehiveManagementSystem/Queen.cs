@@ -7,7 +7,7 @@ namespace BeehiveManagementSystem
     // This Bee subclass uses an array to keep track of the workers  and overrides DoJob to call their WorkTheNextShift methods.
     //The Queen class drives all of the work in the program—she keeps track of the instances     of the worker Bee objects, creates new ones when they need to be assigned to their jobs, and tells them to start working their shifts:
 
-    internal class Queen : Bee,INotifyPropertyChanged
+    internal class Queen : Bee, INotifyPropertyChanged
     {
         private const float EGGS_PER_SHIFT = 0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
@@ -71,6 +71,8 @@ namespace BeehiveManagementSystem
                 WorkerStatus(BEE_NECTARCOLLECTOR) + "\n■ " +
                 WorkerStatus(BEE_HONEYMANUFACTURER) +
                 "\n TOTAL WORKERS ■■■■■ " + workers.Length;
+
+            OnPropertyChanged("StatusReport");
         }
 
         private string WorkerStatus(string j)
@@ -119,6 +121,11 @@ namespace BeehiveManagementSystem
 
             //  Finally, it calls its UpdateStatusReport method.
             UpdateStatusReport();
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }
