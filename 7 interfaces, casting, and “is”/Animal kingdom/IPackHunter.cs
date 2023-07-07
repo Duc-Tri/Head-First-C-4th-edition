@@ -8,7 +8,10 @@ namespace Animal_kingdom
 {
     internal interface IPackHunter
     {
-        void HuntInPack();
+        void HuntInPack()
+        {
+            Console.WriteLine("delfault");
+        }
 
     }
 }
