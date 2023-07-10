@@ -9,8 +9,9 @@ namespace CardsGame
 
     internal class Card
     {
-        readonly Suits Suit;
-        readonly Values Value;
+        public readonly Suits Suit;
+        public readonly Values Value;
+
         public string Name
         {
             get
@@ -27,6 +28,11 @@ namespace CardsGame
         {
             Suit = suit;
             Value = value;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
