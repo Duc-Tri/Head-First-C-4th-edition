@@ -1,0 +1,46 @@
+﻿<Window x:Class="Two_Decks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Two_Decks"
+        mc:Ignorable="d"
+        Title="TWO DECKS" Height="450" Width="400">
+
+    <Window.Resources>
+        <local:Deck x:Key="leftDeck"/>
+        <local:Deck x:Key="rightDeck"/>
+    </Window.Resources>
+    
+    <Grid Background="#FFA0B0E0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition  />
+            <RowDefinition Height="Auto" MinHeight="10"  />
+            <RowDefinition Height="Auto" MinHeight="10"  />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- FIRST COLUMN ================================================= -->
+        
+        <Label x:Name="deck1Label" Content="Deck _1" HorizontalAlignment="Center" Margin="10" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Target="{Binding ElementName=leftDeckListBox, Mode=OneWay}"/>
+        <ListBox x:Name="leftDeckListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10" Grid.Column="0" Grid.Row="1" VerticalContentAlignment="Center" ItemsSource="{DynamicResource leftDeck}" KeyDown="leftDeckListBox_KeyDown" MouseDoubleClick="leftDeckListBox_MouseDoubleClick"/>
+        
+        <Button x:Name="shuffleLeftDeck" Content="_Shuffle" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="10" Height="30" Width="160" FontWeight="Bold" FontSize="14" Click="shuffleLeftDeck_Click"/>
+        <Button x:Name="resetLeftDeck" Content="_Reset" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="10" Height="30" Width="160" FontWeight="Bold" FontSize="14" Click="resetLeftDeck_Click"/>
+
+        <!-- SECOND COLUMN ================================================ -->
+
+        <Label x:Name="deck2Label" Content="Deck _2" HorizontalAlignment="Center" Margin="10" Grid.Column="1" Grid.Row="0"  VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Target="{Binding ElementName=rightDeckListBox, Mode=OneWay}"/>
+        <ListBox x:Name="rightDeckListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" ItemsSource="{DynamicResource rightDeck}" MouseDoubleClick="rightDeckListBox_MouseDoubleClick" KeyDown="rightDeckListBox_KeyDown"/>
+        
+        <Button x:Name="clearRightDeck" Content="_Clear" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10" Height="30" Width="160" FontWeight="Bold" FontSize="14" Click="clearRightDeck_Click"/>
+        <Button x:Name="sortRightDeck" Content="Sor_t" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10" Height="30" Width="160" FontWeight="Bold" FontSize="14" Click="sortRightDeck_Click"/>
+
+    </Grid>
+</Window>
