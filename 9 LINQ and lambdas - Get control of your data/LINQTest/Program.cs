@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using LINQTest;
+using System.Diagnostics.Metrics;
+using System.Linq;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
@@ -35,3 +37,67 @@ Console.WriteLine("=========================================================");
 int[] values = new int[] { 0, 12, 44, 36, 92, 54, 13, 8 };
 IEnumerable<int> result = from v in values where v > 37 orderby -v select v;
 Console.WriteLine("request : " + String.Join(", ", result));
+
+Console.WriteLine();
+Console.WriteLine("=========================================================");
+var sandwiches = new[] { "ham and cheese", "salami with mayo", "turkey and swiss", "chicken cutlet" };
+var sandwichesOnRye = from sandwich in sandwiches select $"{sandwich} on rye";
+
+foreach (var sandwich in sandwichesOnRye) Console.WriteLine(sandwich);
+
+var random = new Random();
+var num = new List<int>();
+int length = random.Next(50, 150);
+for (int i = 0; i < length; i++) num.Add(random.Next(100));
+
+Console.WriteLine($@"Stats for these {num.Count()} num:
+The first 5 num: {String.Join(", ", num.Take(5))}
+The last 5 num: {String.Join(", ", num.TakeLast(5))}
+The first is {num.First()} and the last is {num.Last()}
+The smallest is {num.Min()}, and the biggest is {num.Max()}
+The sum is {num.Sum()}
+The average is {num.Average():F2}");
+
+Console.WriteLine();
+Console.WriteLine("=========================================================");
+
+static void TestPrintWhenGetting()
+{
+    var listOfObjects = new List<PrintWhenGetting>();
+    for (int i = 1; i < 5; i++) listOfObjects.Add(new PrintWhenGetting() { InstanceNumber = i });
+
+    Console.WriteLine("Set up the query");
+    var result = from o in listOfObjects select o.InstanceNumber;
+
+    Console.WriteLine("Run the foreach DEFERRED / LAZY");
+    foreach (var number in result) Console.WriteLine($"Writing #{number}");
+
+    Console.WriteLine("Run the foreach IMMEDIATE");
+    var immediate = result.ToList();
+    foreach (var number in immediate) Console.WriteLine($"Writing #{number}");
+}
+
+TestPrintWhenGetting();
+
+Console.WriteLine();
+Console.WriteLine("=========================================================");
+void TestGroupBy()
+{
+    // Now that the Shuffle method supports method chaining, you can chain the LINQ Take method right after it.
+    var deck = new Deck().Shuffle().Take(16);
+    var grouped =
+    from card in deck
+    group card by card.Suit into suitGroup
+    orderby suitGroup.Key descending
+    select suitGroup;
+
+    foreach (var group in grouped)
+    {
+        Console.WriteLine(@$"Group: {group.Key}
+            Count: {group.Count()}
+            Minimum: {group.Min()}
+            Maximum: {group.Max()}");
+    }
+}
+
+TestGroupBy();
