@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Jimmy_LINQ
 {
-    internal class Comic
+    public class Comic
     {
-        public string Name { get; private set; }
-        public int Issue { get; private set; }
+        public string Name { get; set; }
+        public int Issue { get; set; }
 
         public override string ToString() => $"{Name} (Issue #{Issue})";
 
