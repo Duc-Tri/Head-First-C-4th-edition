@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,8 @@ namespace Two_Decks
             InitializeComponent();
 
             (Resources["rightDeck"] as Deck)?.Clear();
+
+            Deck.TestDeckLINQ();
         }
 
         private void MoveCard(bool leftToRight)

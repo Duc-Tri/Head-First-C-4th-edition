@@ -13,15 +13,12 @@ namespace BeehiveManagementSystem
         // Its DoJob method passes that const to HoneyVault.CollectNectar
         const float NECTAR_COLLECTED_PER_SHIFT = 33.25f;
 
-        public override float CostPerShift { get => 1.95f; }
+        public override float CostPerShift => 1.95f;
 
         public NectarCollector() : base(BEE_NECTARCOLLECTOR)
         {
         }
 
-        protected override void DoJob()
-        {
-            HoneyVault.CollectNectar(NECTAR_COLLECTED_PER_SHIFT);
-        }
+        protected override void DoJob() => HoneyVault.CollectNectar(NECTAR_COLLECTED_PER_SHIFT);
     }
 }
