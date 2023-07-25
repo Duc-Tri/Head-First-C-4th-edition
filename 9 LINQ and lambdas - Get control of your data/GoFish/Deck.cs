@@ -17,6 +17,12 @@ namespace GoFish
             Reset();
         }
 
+        public Deck(IEnumerable<Card> cards)
+        {
+            foreach(var c in cards) this.Add(c);
+            Sort();
+        }
+
         static string Output(Suits suit, int number) => $"Suit is {suit} and number is {number}";
 
         public static void TestDeckLINQ()

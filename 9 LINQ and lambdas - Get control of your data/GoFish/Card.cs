@@ -29,12 +29,18 @@ namespace GoFish
             Value = value;
         }
 
+        public Card(Values value, Suits suit)
+        {
+            Suit = suit;
+            Value = value;
+        }
+
         public override string ToString()
         {
             return Name;
         }
 
-        public int CompareTo(Card? other)
+        public int CompareTo(Card other)
         {
             if (this.Suit > other.Suit) return 1;
             if (this.Suit < other.Suit) return -1;
