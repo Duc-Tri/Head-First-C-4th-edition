@@ -10,11 +10,12 @@ namespace GoFish
 {
     public class Deck : ObservableCollection<Card>
     {
-        private static Random random = new Random();
+        private static Random random = Player.Random; // new Random();
 
         public Deck()
         {
             Reset();
+            Sort();
         }
 
         public Deck(IEnumerable<Card> cards)

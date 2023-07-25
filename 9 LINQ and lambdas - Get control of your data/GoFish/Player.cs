@@ -50,12 +50,6 @@ namespace GoFish
             Name = name;
             hand.AddRange(cards);
         }
-        /*
-        We saw earlier in Chapter 9 that you need to make your classes public to use them in the the unit test project.Make sure you modifymodify the Card, Deck, and CardComparerByValue classes and Suits and Values enums to add the public access modifier, otherwise you’ll get compiler errors about inconsistent accessibility.
-        We implemented a few of the members—like the Hand and Books properties and their backing fields, the readonly Name field, and a useful S method to pluralize an English word, so $"card{S(hand.Count())}" interpolates to “card” if there's one card in the hand, and “cards” if there are either zero or multiple cards.
-We added two constructors.The second one is mainly used for unit testing.
-We learned in Chapter 4 that you should only have a single instance of
-        */
 
         /// <summary>
         /// Gets up to five cards from the stock
@@ -63,10 +57,8 @@ We learned in Chapter 4 that you should only have a single instance of
         /// <param name="stock">Stock to get the next hand from</param>
         public void GetNextHand(Deck stock)
         {
-            for (int i = 0; i < 5; i++)
-            {
+            while (stock.Count > 0 && hand.Count < 5)
                 hand.Add(stock.Deal(0));
-            }
         }
 
         /// <summary>
@@ -78,15 +70,13 @@ We learned in Chapter 4 that you should only have a single instance of
         /// <returns>The cards that were pulled out of the other player's hand</returns>
         public IEnumerable<Card> DoYouHaveAny(Values value, Deck deck)
         {
-            if (hand.Count == 0)
-            {
-                GetNextHand(deck);
-                return null;
-            }
-
             var cards = hand.Where(x => x.Value == value).OrderBy(x => x.Suit).ToList();
 
-            foreach (var card in cards) hand.Remove(card);
+            hand = hand.Where(card => card.Value != value).ToList();
+            //foreach (var card in cards) hand.Remove(card);
+
+            if (hand.Count == 0)
+                GetNextHand(deck);
 
             return cards;
         }
@@ -100,10 +90,30 @@ We learned in Chapter 4 that you should only have a single instance of
         {
             hand.AddRange(cards);
 
-            //-----------------------------------------------------------------
-            // PULL OUT BOOKS
-            //-----------------------------------------------------------------
+            /*
+            var groups = hand.GroupBy(v => v.Value);
+            foreach (var g in groups)
+                if (g.Count() == 4)
+                {
+                    books.Add(g.Key);
+                    foreach (var c in g)
+                        hand.Remove(c);
+                }
+            */
 
+            // We used GroupBy to group the hand by value, then Where to include only the groups that have all four suits, and finally Select to convert each group to its key, the suit.
+            var foundBooks = hand
+            .GroupBy(card => card.Value)
+            .Where(group => group.Count() == 4)
+            .Select(group => group.Key);
+
+
+            // Once the method finds the books, it adds them to its private books field, and then updates its private hand field to remove any cards that match a found book.
+            books.AddRange(foundBooks);
+            books.Sort();
+            hand = hand
+            .Where(card => !books.Contains(card.Value))
+            .ToList();
         }
 
         /// <summary>
@@ -112,7 +122,8 @@ We learned in Chapter 4 that you should only have a single instance of
         /// <param name="stock">Stock to draw a card from</param>
         public void DrawCard(Deck stock)
         {
-            hand.Add(stock.Deal(0));
+            if (stock.Count > 0)
+                AddCardsAndPullOutBooks(new List<Card>() { stock.Deal(0) });
         }
 
         /// <summary>
@@ -123,4 +134,3 @@ We learned in Chapter 4 that you should only have a single instance of
         public override string ToString() => Name;
     }
 }
-

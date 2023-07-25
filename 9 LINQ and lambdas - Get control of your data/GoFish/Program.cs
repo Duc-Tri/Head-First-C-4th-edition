@@ -10,12 +10,8 @@ namespace GoFish
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("HELLO");
-            PlayerTests.TestGetNextHand();
-            PlayerTests.TestDoYouHaveAny();
-            PlayerTests.TestAddCardsAndPullOutBooks();
-            PlayerTests.TestDrawCard();
-            PlayerTests.TestRandomValueFromHand();
+            Console.WriteLine("TESTING PLAYER METHODS.......");
+            PlayerTests.TestAll();
         }
     }
 }
