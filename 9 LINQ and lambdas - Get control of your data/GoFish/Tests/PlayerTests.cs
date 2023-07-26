@@ -15,15 +15,15 @@ namespace GoFish.Tests
     {
         public static void TestAll()
         {
-            Console.WriteLine("TestGetNextHand ================================");
+            Console.WriteLine("TestGetNextHand =============================");
             TestGetNextHand();
-            Console.WriteLine("TestDoYouHaveAny ===============================");
+            Console.WriteLine("TestDoYouHaveAny ============================");
             TestDoYouHaveAny();
-            Console.WriteLine("TestAddCardsAndPullOutBooks ====================");
+            Console.WriteLine("TestAddCardsAndPullOutBooks =================");
             TestAddCardsAndPullOutBooks();
-            Console.WriteLine("TestDrawCard ===================================");
+            Console.WriteLine("TestDrawCard ================================");
             TestDrawCard();
-            Console.WriteLine("TestRandomValueFromHand ========================");
+            Console.WriteLine("TestRandomValueFromHand =====================");
             TestRandomValueFromHand();
         }
 

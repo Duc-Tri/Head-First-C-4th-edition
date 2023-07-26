@@ -13,7 +13,7 @@ namespace GoFish
         {
             Console.WriteLine("---------------------- TESTING PLAYER METHODS");
             PlayerTests.TestAll();
-            Console.WriteLine("---------------------- TESTING GAMESTATE METHODS");
+            Console.WriteLine("------------------- TESTING GAMESTATE METHODS");
             GameStateTests.TestAll();
         }
     }

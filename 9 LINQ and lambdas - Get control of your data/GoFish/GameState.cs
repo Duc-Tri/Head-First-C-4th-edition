@@ -42,6 +42,7 @@ namespace GoFish
 
             Opponents = opponents;
             Players = players;
+            // Players = new List<Player>() { HumanPlayer }.Concat(Opponents);
         }
 
         /// <summary>
@@ -50,7 +51,8 @@ namespace GoFish
         /// <param name="currentPlayer">The current player</param>
         /// <returns>A random player that the current player can ask for a card</returns>
         public Player RandomPlayer(Player currentPlayer) =>
-        Players.Where(v => v != currentPlayer).ToList()[Player.Random.Next(Players.Count() - 1)];
+        Players.Where(p => p != currentPlayer).ToList()[Player.Random.Next(Players.Count() - 1)];
+        // public Player RandomPlayer(Player currentPlayer) => Players.Where(player => player != currentPlayer).Skip(Player.Random.Next(Players.Count() - 1)).First();
 
         /// <summary>
         /// Makes one player play a round
@@ -63,12 +65,34 @@ namespace GoFish
         public string PlayRound(Player player, Player playerToAsk,
         Values valueToAskFor, Deck stock)
         {
-            var cards = playerToAsk.DoYouHaveAny(valueToAskFor, stock);
-            player.AddCardsAndPullOutBooks(cards);
+            // The PlayRound method relies on the methods you already added to the Player class to ask another player for a card, add those cards and pull out books or draw a card from the stock, and get the next hand if teh player is out.
 
-            return $"{player} asked {playerToAsk} for {valueToAskFor}" + ((valueToAskFor == Values.Six) ? "es" : "s") + Environment.NewLine +
-                (stock.Count > 0 || cards.Count()>0 ? $"{playerToAsk} has {cards.Count()} {valueToAskFor} card{Player.S(cards.Count())}"
-                : "The stock is out of cards");
+            var valuePlural = (valueToAskFor == Values.Six) ? "Sixes" : $"{valueToAskFor}s";
+            var message = $"{player.Name} asked {playerToAsk.Name}"
+            + $" for {valuePlural}{Environment.NewLine}";
+            var cards = playerToAsk.DoYouHaveAny(valueToAskFor, stock);
+            if (cards.Count() > 0)
+            {
+                player.AddCardsAndPullOutBooks(cards);
+                message += $"{playerToAsk.Name} has {cards.Count()}"
+                + $" {valueToAskFor} card{Player.S(cards.Count())}";
+            }
+            else if (stock.Count == 0)
+            {
+                message += $"The stock is out of cards";
+            }
+            else
+            {
+                player.DrawCard(stock);
+                message += $"{player.Name} drew a card";
+            }
+            if (player.Hand.Count() == 0)
+            {
+                player.GetNextHand(stock);
+                message += $"{Environment.NewLine}{player.Name} ran out of cards,"
+                + $" drew {player.Hand.Count()} from the stock";
+            }
+            return message;
         }
 
         /// <summary>
@@ -82,9 +106,14 @@ namespace GoFish
             if (nonEmptyHands > 0)
                 return string.Empty;
 
+            GameOver = true;
             var maxBooks = Players.Select(c => c.Books.Count()).Max();
+            var winners = Players.Where(p => p.Books.Count() == maxBooks);
 
-            return "The winners are " + string.Join(" and ", Players.Where(p => p.Books.Count() >= maxBooks).Select(p => p.Name));
+            return "The winner" +
+                (winners.Count() == 1 ?
+                " is " + winners.First() :
+                "s are " + string.Join(" and ", winners));
         }
     }
 }
