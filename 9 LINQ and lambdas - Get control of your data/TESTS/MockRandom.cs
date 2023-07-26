@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GoFish.Tests
+namespace TESTS
 {
     /// <summary>
     /// Mock Random for testing that always returns a specific value

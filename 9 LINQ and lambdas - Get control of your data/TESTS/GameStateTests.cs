@@ -1,24 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using GoFish;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace GoFish.Tests
+namespace TESTS
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection.Metadata;
-    using System.Security.Cryptography;
-    using System.Threading;
-    using GoFish;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     [TestClass]
-    public static class GameStateTests
+    public class GameStateTests
     {
+        /*
         [TestMethod]
         public static void TestAll()
         {
@@ -31,9 +22,10 @@ namespace GoFish.Tests
             Console.WriteLine("TestCheckForAWinner =========================");
             TestCheckForAWinner();
         }
+        */
 
         [TestMethod]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
             // The constructor takes three parameters: the name of the human player, the names of the computer players, and a Deck object to serve as the stock.
             var computerPlayerNames = new List<string>()
@@ -52,7 +44,7 @@ namespace GoFish.Tests
         }
 
         [TestMethod]
-        public static void TestRandomPlayer()
+        public void TestRandomPlayer()
         {
             var computerPlayerNames = new List<string>()
             {
@@ -74,7 +66,7 @@ namespace GoFish.Tests
         }
 
         [TestMethod]
-        public static void TestPlayRound()
+        public void TestPlayRound()
         {
             // We test the PlayRound method by setting up a deck to deal to our Owen and Brittany players. Once the deck is set up, we create a GameState with the two players and call PlayRound to play out the rounds.
 
@@ -137,7 +129,7 @@ namespace GoFish.Tests
         }
 
         [TestMethod]
-        public static void TestCheckForAWinner()
+        public void TestCheckForAWinner()
         {
             // We checked for a winner by setting up a GameState with an empty deck, so all of the players would be dealt empty hands.They all have the same number of books, so they’ll all be winners.
             var computerPlayerNames = new List<string>()
@@ -155,14 +147,6 @@ namespace GoFish.Tests
             // Can you think of additional ways to test that the CheckForAWinner method works? Try writing another unit test for that method.
         }
     }
-
-
-
-
-
-
-
-
 
 }
 

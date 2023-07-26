@@ -1,15 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using global::GoFish.Tests;
 using global::GoFish;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TESTS
 {
@@ -17,6 +10,7 @@ namespace TESTS
     [TestClass]
     public  class PlayerTests
     {
+        /*
         public  void TestAll()
         {
             Console.WriteLine("TestGetNextHand =============================");
@@ -30,6 +24,7 @@ namespace TESTS
             Console.WriteLine("TestRandomValueFromHand =====================");
             TestRandomValueFromHand();
         }
+        */
 
         [TestMethod]
         public  void TestGetNextHand()
