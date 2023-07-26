@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 // Unit tests aren’t just useful for making sure your code works.They’re also a great way to understand what your code is supposed to do. Part of your job is to read through these unit tests to figure out what the Player class should do. You’ll know your class is working when all of the unit tests pass.
-namespace GoFish
+namespace GoFish.Tests
 {
     [TestClass]
     public static class PlayerTests
@@ -16,15 +16,15 @@ namespace GoFish
         public static void TestAll()
         {
             Console.WriteLine("TestGetNextHand ================================");
-            PlayerTests.TestGetNextHand();
+            TestGetNextHand();
             Console.WriteLine("TestDoYouHaveAny ===============================");
-            PlayerTests.TestDoYouHaveAny();
+            TestDoYouHaveAny();
             Console.WriteLine("TestAddCardsAndPullOutBooks ====================");
-            PlayerTests.TestAddCardsAndPullOutBooks();
+            TestAddCardsAndPullOutBooks();
             Console.WriteLine("TestDrawCard ===================================");
-            PlayerTests.TestDrawCard();
+            TestDrawCard();
             Console.WriteLine("TestRandomValueFromHand ========================");
-            PlayerTests.TestRandomValueFromHand();
+            TestRandomValueFromHand();
         }
 
         [TestMethod]
