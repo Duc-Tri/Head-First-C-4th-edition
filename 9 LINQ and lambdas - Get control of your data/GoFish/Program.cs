@@ -10,7 +10,8 @@ namespace GoFish
     {
         static void Main(string[] args)
         {
-          
+            var gameController = new GameController("Owen", new List<string>() { "Brittney" });
+
         }
     }
 }

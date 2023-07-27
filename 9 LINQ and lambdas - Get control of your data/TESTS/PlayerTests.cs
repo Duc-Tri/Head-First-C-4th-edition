@@ -85,8 +85,8 @@ namespace TESTS
             Assert.AreEqual("Player Owen has 1 card and 0 book", player.Status);
         }
 
-
         // The Player.RandomValueFromHand method uses the Random class to generate random values.How do you test a method that relies on a random number? We used a mock object, or a simulated Random object that mimics the behavior of the actual.NET Random class.
+
         // Lucky for us, the Next and NextInt methods in the.NET Random class are virtual, so we created a MockRandom class that extends System.Random but overrides those methods. We added a ValueToReturn property to tell the mock object what int value its Next and NextInt methods should return. That lets us test methods that rely on random numbers.
 
         [TestMethod]

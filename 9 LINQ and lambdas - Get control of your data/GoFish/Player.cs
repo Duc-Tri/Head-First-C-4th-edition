@@ -58,7 +58,12 @@ namespace GoFish
         public void GetNextHand(Deck stock)
         {
             while (stock.Count > 0 && hand.Count < 5)
-                hand.Add(stock.Deal(0));
+            {
+                var card = stock.Deal(0);
+                hand.Add(card);
+                Console.WriteLine($"{Name} got a {card.Value} of {card.Suit}");
+            }
+
         }
 
         /// <summary>
@@ -131,6 +136,13 @@ namespace GoFish
         /// </summary>
         /// <returns>The value of a randomly selected card in the player's hand</returns>
         public Values RandomValueFromHand() => hand[Random.Next(hand.Count)].Value;
+        
         public override string ToString() => Name;
+
+        internal void ResetBooksHand()
+        {
+            hand.Clear();
+            books.Clear();  
+        }
     }
 }
