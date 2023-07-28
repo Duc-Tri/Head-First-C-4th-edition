@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
 namespace GoFish
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Player
     {
         public static Random Random = new Random();
+
         private List<Card> hand = new List<Card>();
         private List<Values> books = new List<Values>();
 
@@ -22,17 +20,19 @@ namespace GoFish
         /// The books that the player has pulled out
         /// </summary>
         public IEnumerable<Values> Books => books;
+
         public readonly string Name;
 
         /// <summary>
         /// Pluralize a word, adding "s" if a value isn't equal to 1
         /// </summary>
-        public static string S(int s) => s < 2 ? "" : "s";
+        public static string S(int s) => s == 1 ? "" : "s";
 
         /// <summary>
         /// Returns the current status of the player: the number of cards and books
         /// </summary>
-        public string Status => $"Player {Name} has {hand.Count} card{S(hand.Count)} and {books.Count} book{S(books.Count)}";
+        public string Status =>
+            $"{Name} has {hand.Count()} card{S(hand.Count())} and {books.Count()} book{S(books.Count())}";
 
         /// <summary>
         /// Constructor to create a player
@@ -57,15 +57,13 @@ namespace GoFish
         /// <param name="stock">Stock to get the next hand from</param>
         public void GetNextHand(Deck stock)
         {
-            while (stock.Count > 0 && hand.Count < 5)
+            while ((stock.Count() > 0) && (hand.Count < 5))
             {
                 var card = stock.Deal(0);
                 hand.Add(card);
-                Console.WriteLine($"{Name} got a {card.Value} of {card.Suit}");
+                Console.WriteLine($"{Name} drew a {card.Value} of {card.Suit}");
             }
-
         }
-
         /// <summary>
         /// If I have any cards that match the value, return them. If I run out of cards, get
         /// the next hand from the deck.
@@ -75,15 +73,14 @@ namespace GoFish
         /// <returns>The cards that were pulled out of the other player's hand</returns>
         public IEnumerable<Card> DoYouHaveAny(Values value, Deck deck)
         {
-            var cards = hand.Where(x => x.Value == value).OrderBy(x => x.Suit).ToList();
-
+            var matchingCards = hand.Where(card => card.Value == value)
+                .OrderBy(Card => Card.Suit);
             hand = hand.Where(card => card.Value != value).ToList();
-            //foreach (var card in cards) hand.Remove(card);
 
-            if (hand.Count == 0)
+            if (hand.Count() == 0)
                 GetNextHand(deck);
 
-            return cards;
+            return matchingCards;
         }
 
         /// <summary>
@@ -95,30 +92,17 @@ namespace GoFish
         {
             hand.AddRange(cards);
 
-            /*
-            var groups = hand.GroupBy(v => v.Value);
-            foreach (var g in groups)
-                if (g.Count() == 4)
-                {
-                    books.Add(g.Key);
-                    foreach (var c in g)
-                        hand.Remove(c);
-                }
-            */
-
-            // We used GroupBy to group the hand by value, then Where to include only the groups that have all four suits, and finally Select to convert each group to its key, the suit.
             var foundBooks = hand
-            .GroupBy(card => card.Value)
-            .Where(group => group.Count() == 4)
-            .Select(group => group.Key);
+                .GroupBy(card => card.Value)
+                .Where(group => group.Count() == 4)
+                .Select(group => group.Key);
 
-
-            // Once the method finds the books, it adds them to its private books field, and then updates its private hand field to remove any cards that match a found book.
             books.AddRange(foundBooks);
             books.Sort();
+
             hand = hand
-            .Where(card => !books.Contains(card.Value))
-            .ToList();
+                .Where(card => !books.Contains(card.Value))
+                .ToList();
         }
 
         /// <summary>
@@ -135,14 +119,11 @@ namespace GoFish
         /// Gets a random value from the player's hand
         /// </summary>
         /// <returns>The value of a randomly selected card in the player's hand</returns>
-        public Values RandomValueFromHand() => hand[Random.Next(hand.Count)].Value;
-        
-        public override string ToString() => Name;
+        public Values RandomValueFromHand() => hand.OrderBy(card => card.Value)
+            .Select(card => card.Value)
+            .Skip(Random.Next(hand.Count()))
+            .First();
 
-        internal void ResetBooksHand()
-        {
-            hand.Clear();
-            books.Clear();  
-        }
+        public override string ToString() => Name;
     }
 }

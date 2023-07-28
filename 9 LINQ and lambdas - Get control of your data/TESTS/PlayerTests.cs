@@ -82,7 +82,7 @@ namespace TESTS
             CollectionAssert.AreEqual(new List<string>() { "Four of Diamonds" }, hand);
 
             // The end of the test checks the cards in the Player’s hand and verifies the Status property.
-            Assert.AreEqual("Player Owen has 1 card and 0 book", player.Status);
+            Assert.AreEqual("Owen has 1 card and 0 books", player.Status);
         }
 
         // The Player.RandomValueFromHand method uses the Random class to generate random values.How do you test a method that relies on a random number? We used a mock object, or a simulated Random object that mimics the behavior of the actual.NET Random class.
@@ -117,7 +117,7 @@ namespace TESTS
             CollectionAssert.AreEqual(new List<Values>() { Values.Three, Values.Jack }, books);
             var hand = player.Hand.Select(Card => Card.ToString()).ToList();
             CollectionAssert.AreEqual(new List<string>() { "Four of Diamonds" }, hand);
-            Assert.AreEqual("Player Owen has 1 card and 2 books", player.Status);
+            Assert.AreEqual("Owen has 1 card and 2 books", player.Status);
         }
 
         [TestMethod]
@@ -136,6 +136,7 @@ namespace TESTS
             // We replaced the Player.Random reference with a reference to a new MockRandom object with ValueToReturn set to return a specific value.
             var player = new Player("Owen", new Deck());
             Player.Random = new MockRandom() { ValueToReturn = 0 };
+
             Assert.AreEqual("Ace", player.RandomValueFromHand().ToString());
 
             Player.Random = new MockRandom() { ValueToReturn = 4 };
