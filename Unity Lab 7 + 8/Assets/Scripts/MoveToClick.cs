@@ -18,7 +18,7 @@ public class MoveToClick : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!GameController.Instance.GameOver && Input.GetMouseButton(0))
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

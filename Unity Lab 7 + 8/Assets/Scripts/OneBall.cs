@@ -9,9 +9,14 @@ public class OneBall : MonoBehaviour
     public float Multiplier = 100f;
     public float MaxMultiplier = 3000f;
 
+    private GameController gameController;
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        gameController = Camera.main.GetComponent<GameController>();
+        if (gameController == null)
+            gameController = GameController.Instance;
     }
 
     private void Start()
@@ -60,7 +65,18 @@ public class OneBall : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, forceAdded, Color.white);
+
+        if(gameController.GameOver)
+            Destroy(gameObject);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameController.CollideWithBall();
+            Destroy(gameObject);
+        }
+    }
 
 }

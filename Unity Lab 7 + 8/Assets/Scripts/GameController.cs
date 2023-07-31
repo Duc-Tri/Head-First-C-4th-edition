@@ -1,12 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameObject OneBallPrefab;
     public float addBallFrequency = 1; // in seconds
     public float addBallHeight = 10; // y
+
+    public int Score = 0;
+    public static GameController Instance;
+
+    public bool GameOver = true;
+    public int MaxScore = 10;
+    public Text ScoreText;
+    public Button playAgainButton;
+
+    private void Awake()
+    {
+        SetGameOver(true);
+        Instance = this;
+    }
 
     void Start()
     {
@@ -15,14 +30,39 @@ public class GameController : MonoBehaviour
 
     void DropABall()
     {
-        GameObject ball = Instantiate(OneBallPrefab);
-        ball.transform.position = new Vector3(20 - Random.value * 40,
-                                            addBallHeight,
-                                            10 - Random.value * 20);
+        if (!GameOver)
+        {
+            GameObject ball = Instantiate(OneBallPrefab);
+            ball.transform.position = new Vector3(20 - Random.value * 40,
+                                                addBallHeight,
+                                                10 - Random.value * 20);
+        }
     }
 
     void Update()
     {
-
+        ScoreText.text = $"Score: {Score} of {MaxScore}";
     }
+
+    public void CollideWithBall()
+    {
+        Score++;
+        if (Score >= MaxScore)
+        {
+            SetGameOver(true);
+        }
+    }
+
+    private void SetGameOver(bool v)
+    {
+        GameOver = v;
+        playAgainButton.gameObject.SetActive(v);
+        Score = 0;
+    }
+
+    public void StartGame()
+    {
+        SetGameOver(false);
+    }
+
 }
