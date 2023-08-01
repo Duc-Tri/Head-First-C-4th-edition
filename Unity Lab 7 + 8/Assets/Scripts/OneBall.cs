@@ -11,16 +11,26 @@ public class OneBall : MonoBehaviour
 
     private GameController gameController;
 
+    [SerializeField]
+    private AudioSource audioDestroyBall;
+
+    [SerializeField]
+    private AudioSource audioCollision2Balls;
+
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        gameController = Camera.main.GetComponent<GameController>();
-        if (gameController == null)
-            gameController = GameController.Instance;
     }
 
     private void Start()
     {
+        audioCollision2Balls = GetComponent<AudioSource>();
+        audioDestroyBall = GameController.Instance.audioDestroyBall;
+
+        rigidbody = GetComponent<Rigidbody>();
+        gameController = Camera.main.GetComponent<GameController>();
+        if (gameController == null)
+            gameController = GameController.Instance;
+
         InvokeRepeating("MoveMe", 1f, 1.5f);
     }
 
@@ -66,7 +76,7 @@ public class OneBall : MonoBehaviour
     {
         Debug.DrawRay(transform.position, forceAdded, Color.white);
 
-        if(gameController.GameOver)
+        if (gameController.GameOver)
             Destroy(gameObject);
     }
 
@@ -76,6 +86,11 @@ public class OneBall : MonoBehaviour
         {
             gameController.CollideWithBall();
             Destroy(gameObject);
+            audioDestroyBall.Play();
+        }
+        else if (collision.gameObject.CompareTag("Ball"))
+        {
+            audioCollision2Balls.Play();
         }
     }
 

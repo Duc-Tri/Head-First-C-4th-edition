@@ -17,6 +17,12 @@ public class GameController : MonoBehaviour
     public Text ScoreText;
     public Button playAgainButton;
 
+    private float GameTimer = 0f;
+    public Text TimerText;
+    
+    [SerializeField]
+    public AudioSource audioDestroyBall;
+
     private void Awake()
     {
         SetGameOver(true);
@@ -42,6 +48,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         ScoreText.text = $"Score: {Score} of {MaxScore}";
+        if (!GameOver)
+        {
+            GameTimer += Time.deltaTime;
+        }
+        TimerText.text = $"Time elapsed: {GameTimer:0.00}";
     }
 
     public void CollideWithBall()
@@ -58,6 +69,7 @@ public class GameController : MonoBehaviour
         GameOver = v;
         playAgainButton.gameObject.SetActive(v);
         Score = 0;
+        GameTimer = 0;
     }
 
     public void StartGame()
