@@ -12,9 +12,6 @@ public class OneBall : MonoBehaviour
     private GameController gameController;
 
     [SerializeField]
-    private AudioSource audioDestroyBall;
-
-    [SerializeField]
     private AudioSource audioCollision2Balls;
 
     void Awake()
@@ -24,7 +21,6 @@ public class OneBall : MonoBehaviour
     private void Start()
     {
         audioCollision2Balls = GetComponent<AudioSource>();
-        audioDestroyBall = GameController.Instance.audioDestroyBall;
 
         rigidbody = GetComponent<Rigidbody>();
         gameController = Camera.main.GetComponent<GameController>();
@@ -86,7 +82,6 @@ public class OneBall : MonoBehaviour
         {
             gameController.CollideWithBall();
             Destroy(gameObject);
-            audioDestroyBall.Play();
         }
         else if (collision.gameObject.CompareTag("Ball"))
         {

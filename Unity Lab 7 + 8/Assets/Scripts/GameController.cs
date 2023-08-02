@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour
 
     public void CollideWithBall()
     {
+        audioDestroyBall.Play();
         Score++;
         if (Score >= MaxScore)
         {
