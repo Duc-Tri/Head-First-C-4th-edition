@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -16,6 +13,7 @@ public class Ball : MonoBehaviour
     private bool clicking;
     private GameController gameController;
     Vector3 startingPosition;
+    bool HitTarget;
 
     private void Start()
     {
@@ -28,17 +26,22 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        HitBallMechanic();
-        OutOfBoundsCheck();
+        if (!gameController.GameOver)
+        {
+            HitBallMechanic();
+            OutOfBoundsCheck();
+        }
     }
 
     private void OutOfBoundsCheck()
     {
-        if (transform.position.y < -10)
+        if (transform.position.y < -5)
         {
             transform.position = startingPosition;
-            gameController.PlayerOutOfBounds();
+            //gameController.PlayerOutOfBounds();
             rigidBody.velocity = rigidBody.angularVelocity = Vector3.zero;
+
+            if (!HitTarget) gameController.BallLost();
         }
     }
 
@@ -46,6 +49,7 @@ public class Ball : MonoBehaviour
     {
         if (!clicking && Input.GetMouseButton(0))
         {
+            HitTarget = false;
             clicking = true;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -59,6 +63,12 @@ public class Ball : MonoBehaviour
         {
             clicking = false;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Target"))
+            HitTarget = true;
     }
 
     private void HitFloorMechanic()

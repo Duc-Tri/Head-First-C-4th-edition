@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -14,6 +11,7 @@ public class Target : MonoBehaviour
 
     private Vector3 startingPosition;
     private static float halfSizeX, halfSizeZ;
+    public int TooFar = 20;
 
     private void Awake()
     {
@@ -57,5 +55,14 @@ public class Target : MonoBehaviour
     void Update()
     {
         Debug.DrawLine(transform.position, startingPosition, Color.yellow);
+
+        if (//Mathf.Abs(transform.position.x) > TooFar ||
+            //Mathf.Abs(transform.position.z) > TooFar ||
+            transform.position.y < -5)
+        {
+            GameController.Instance.PlayerScored();
+            Destroy(gameObject);
+        }
     }
+
 }
