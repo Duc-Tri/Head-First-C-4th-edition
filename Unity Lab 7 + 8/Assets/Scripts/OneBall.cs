@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OneBall : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
     private Vector3 forceAdded;
     public float Multiplier = 100f;
     public float MaxMultiplier = 3000f;
@@ -36,7 +36,7 @@ public class OneBall : MonoBehaviour
             0,
             Multiplier - Random.value * Multiplier * 2);
 
-        rigidbody.AddForce(forceAdded);
+        GetComponent<Rigidbody>().AddForce(forceAdded);
         Multiplier += 100f;
         if (Multiplier > MaxMultiplier)
             Destroy(gameObject);
@@ -53,17 +53,17 @@ public class OneBall : MonoBehaviour
         else
             forceAdded = Vector3.left * 500f;
 
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(forceAdded);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().AddForce(forceAdded);
     }
 
     private void MoveMe2()
     {
         // remove force added last time
-        rigidbody.velocity = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         // add force in a random direction
         forceAdded = Random.insideUnitSphere * 500f;
-        rigidbody.AddForce(forceAdded);
+        GetComponent<Rigidbody>().AddForce(forceAdded);
 
         // the ball will suddenly change direction
     }
