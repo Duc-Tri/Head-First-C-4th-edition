@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveToClick : MonoBehaviour
+public class MoveToClick : BaseBehaviour
 {
-    private NavMeshAgent agent;
-    private GameController gameController;
     private Camera mainCamera;
 
-    void Awake()
+    private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         mainCamera = Camera.main;
     }
 
