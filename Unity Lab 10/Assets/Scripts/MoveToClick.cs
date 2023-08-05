@@ -7,23 +7,26 @@ public class MoveToClick : MonoBehaviour
 {
     private NavMeshAgent agent;
     private GameController gameController;
+    private Camera mainCamera;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         gameController = Camera.main.GetComponent<GameController>();
+        mainCamera = Camera.main;
     }
 
     void Update()
     {
         if (!gameController.GameOver && Input.GetMouseButtonDown(0))
         {
-            Camera cameraComponent = GameObject.Find("Main Camera").GetComponent<Camera>();
-            Ray ray = cameraComponent.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 500))
             {
-                if (hit.collider.gameObject.tag != "Obstacle")
+                Debug.Log("HIT: " + hit.collider.gameObject.tag);
+
+                if (!hit.collider.CompareTag("Obstacle"))
                 {
                     agent.SetDestination(hit.point);
                 }
