@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public Button PlayAgainButton;
 
     private List<GameObject> ActiveRobots;
-    private void Start()
+    private void Awake()
     {
         ActiveRobots = new List<GameObject>();
         ResetLevel(10);
@@ -40,12 +40,22 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+    }
+
     public void StartGame()
     {
         PlayAgainButton.gameObject.SetActive(false);
         Score = 0;
         GameOver = false;
         ResetLevel(2);
+    }
+
+    public void PlayerDied()
+    {
+        GameOver = true;
+        PlayAgainButton.gameObject.SetActive(true);
     }
 
 }

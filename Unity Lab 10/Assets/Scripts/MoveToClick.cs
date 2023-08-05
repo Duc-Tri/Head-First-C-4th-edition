@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class MoveToClick : MonoBehaviour
@@ -12,7 +10,7 @@ public class MoveToClick : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        gameController = Camera.main.GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         mainCamera = Camera.main;
     }
 
@@ -24,7 +22,7 @@ public class MoveToClick : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 500))
             {
-                Debug.Log("HIT: " + hit.collider.gameObject.tag);
+                //Debug.Log("HIT: " + hit.collider.gameObject.tag);
 
                 if (!hit.collider.CompareTag("Obstacle"))
                 {
@@ -33,4 +31,5 @@ public class MoveToClick : MonoBehaviour
             }
         }
     }
+
 }
