@@ -1,10 +1,10 @@
-﻿using Hide_and_Seek;
+﻿using HideAndSeek;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UnitTests
+namespace HideAndSeekTests
 {
     [TestClass]
     public class LocationTests

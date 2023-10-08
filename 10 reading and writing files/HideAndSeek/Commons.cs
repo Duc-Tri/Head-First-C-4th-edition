@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hide_and_Seek
+namespace HideAndSeek
 {
     internal class Commons
     {

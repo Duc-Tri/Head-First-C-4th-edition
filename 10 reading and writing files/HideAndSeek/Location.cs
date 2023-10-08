@@ -5,7 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hide_and_Seek
+namespace HideAndSeek
 {
     public class Location
     {
