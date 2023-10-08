@@ -14,8 +14,10 @@ namespace HideAndSeekTests
             Assert.AreEqual("Entry", House.Entry.Name);
             var garage = House.Entry.GetExit(Direction.Out);
             Assert.AreEqual("Garage", garage.Name);
+            
             var hallway = House.Entry.GetExit(Direction.East);
             Assert.AreEqual("Hallway", hallway.Name);
+
             var kitchen = hallway.GetExit(Direction.NorthWest);
             Assert.AreEqual("Kitchen", kitchen.Name);
             var bathroom = hallway.GetExit(Direction.North);

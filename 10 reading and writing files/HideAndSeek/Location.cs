@@ -43,10 +43,11 @@ namespace HideAndSeek
         /// </summary>
         /// <param name="direction">Direction of the connecting location</param>
         /// <param name="connectingLocation">Connecting location to add</param>
-        public void AddExit(Direction direction, Location connectingLocation)
+        public Location AddExit(Direction direction, Location connectingLocation)
         {
             Exits.Add(direction, connectingLocation);
             connectingLocation.AddReturnExit(direction, this);
+            return connectingLocation;
         }
 
         /// <summary>
