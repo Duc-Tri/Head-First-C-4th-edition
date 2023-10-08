@@ -1,5 +1,6 @@
 ﻿using HideAndSeek;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
@@ -15,12 +16,17 @@ public class GameController
     /// <summary>
     /// Returns the the current status to show to the player
     /// </summary>
-    public string Status => CurrentLocation.DescriptionAllDirections();
+    public string Status => CurrentLocation.ExitsAndDirections();
 
     /// <summary>
     /// A prompt to display to the player
     /// </summary>
     public string Prompt => "Which direction do you want to go: ";
+
+    public int MoveNumber;
+    public bool GameOver;
+    private List<Opponent> opponents;
+    private List<Opponent> foundOpponents;
 
     public GameController()
     {

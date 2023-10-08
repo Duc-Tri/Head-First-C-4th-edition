@@ -46,7 +46,10 @@ namespace HideAndSeek
         public Location AddExit(Direction direction, Location connectingLocation)
         {
             Exits.Add(direction, connectingLocation);
+            Exits = Exits.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+
             connectingLocation.AddReturnExit(direction, this);
+
             return connectingLocation;
         }
 
@@ -55,9 +58,7 @@ namespace HideAndSeek
         /// </summary>
         /// <param name="direction">Direction of the connecting location</param>
         /// <param name="connectingLocation">Location to add the return exit to</param>
-        private void AddReturnExit(Direction direction, Location connectingLocation) =>
-        Exits.Add((Direction)(-(int)direction), connectingLocation);
-
+        private void AddReturnExit(Direction direction, Location connectingLocation) => Exits.Add((Direction)(-(int)direction), connectingLocation);
 
         /// <summary>
         /// Gets the exit location in a direction
@@ -80,7 +81,7 @@ namespace HideAndSeek
             _ => $"to the {d}",
         };
 
-        internal string DescriptionAllDirections()
+        internal string ExitsAndDirections()
         {
             string desc = "You are in the " + Name + ".";
             if (Exits.Count > 0)
