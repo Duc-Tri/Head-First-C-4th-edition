@@ -36,7 +36,7 @@ namespace HideAndSeek
         /// <summary>
         /// Returns a sequence of descriptions of the exits, sorted by direction
         /// </summary>
-        public IEnumerable<string> ExitList => Exits.Select(pair => pair.Value.ToString()).OrderBy(x => x.ToString());
+        public IEnumerable<string> ExitList => Exits.Select(pair => pair.Value.ToString()).OrderBy(x => x);
 
         /// <summary>
         /// Adds an exit to this location
@@ -57,7 +57,6 @@ namespace HideAndSeek
         /// <param name="connectingLocation">Location to add the return exit to</param>
         private void AddReturnExit(Direction direction, Location connectingLocation) =>
         Exits.Add((Direction)(-(int)direction), connectingLocation);
-
 
 
         /// <summary>
@@ -81,5 +80,17 @@ namespace HideAndSeek
             _ => $"to the {d}",
         };
 
+        internal string DescriptionAllDirections()
+        {
+            string desc = "You are in the " + Name + ".";
+            if (Exits.Count > 0)
+            {
+                desc += " You see the following exits:";
+                foreach (var e in Exits.Select(pair => " - the " + pair.Value + " is " + DescribeDirection(pair.Key)).OrderBy(x => x.ToString()))
+                    desc += Environment.NewLine + e;
+            }
+
+            return desc;
+        }
     }
 }
