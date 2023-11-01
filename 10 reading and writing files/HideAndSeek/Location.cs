@@ -81,7 +81,7 @@ namespace HideAndSeek
             _ => $"to the {d}",
         };
 
-        internal string ExitsAndDirections()
+        public virtual string ExitsAndDirections()
         {
             string desc = "You are in the " + Name + ".";
             if (Exits.Count > 0)

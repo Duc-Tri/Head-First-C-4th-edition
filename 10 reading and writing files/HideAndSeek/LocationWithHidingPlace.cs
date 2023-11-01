@@ -28,7 +28,14 @@ namespace HideAndSeek
             List<Opponent> copy = new List<Opponent>(opponents);
             opponents.Clear();
 
+            System.Diagnostics.Debug.WriteLine($"@ {Name} has [{string.Join(" ■ ", copy)}] inside its {HidingPlace}");
+
             return copy;
+        }
+
+        public override string ExitsAndDirections()
+        {
+            return base.ExitsAndDirections() + Environment.NewLine + $"Someone could hide {HidingPlace}";
         }
 
     }
