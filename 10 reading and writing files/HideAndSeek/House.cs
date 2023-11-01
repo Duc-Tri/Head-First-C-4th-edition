@@ -13,7 +13,7 @@ namespace HideAndSeek
         // The House class has two members: the Entry property that returns the starting location for the player, and the constructor that sets up the data structure. Remember, House is a static class, so use the static access modifier when you declare the members.
         public static Location Entry;
 
-        private static IEnumerable<Location> locations = new List<Location>();
+        public static IEnumerable<Location> locations = new List<Location>();
 
         public static System.Random Random;
 
@@ -43,8 +43,7 @@ namespace HideAndSeek
 
             Console.WriteLine("LOCATIONS: " + string.Join(" / ", locations.Select(x => x.Name)));
 
-            foreach (var l in landing.Exits)
-                Console.WriteLine(landing.Name + " -> " + l.Key + " = " + l.Value);
+            //foreach (var l in landing.Exits) Console.WriteLine(landing.Name + " -> " + l.Key + " = " + l.Value);
         }
 
         public static Location GetLocationByName(string name)
@@ -57,7 +56,7 @@ namespace HideAndSeek
 
         public static Location RandomExit(Location l)
         {
-            return l.Exits.ElementAt(Random.Next(l.Exits.Count)).Value;
+            return l.RandomExit();
         }
 
         public static void ClearHidingPlaces()

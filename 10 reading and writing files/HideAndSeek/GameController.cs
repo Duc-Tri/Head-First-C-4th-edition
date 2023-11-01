@@ -15,9 +15,10 @@ public class GameController
     /// <summary>
     /// Returns the the current status to show to the player
     /// </summary>
-    public string Status => CurrentLocation.ExitsAndDirections() + (foundOpponents.Count > 0 ?
-                                                            Environment.NewLine + $"You have found {foundOpponents.Count} of {Opponents.ToList().Count} opponents: {string.Join(", ", foundOpponents)}" :
-                                                            Environment.NewLine + "You have not found any opponent");
+    public string Status => CurrentLocation.ExitsAndDirections() +
+                            (foundOpponents.Count > 0 ?
+                                Environment.NewLine + $"You have found {foundOpponents.Count} of {Opponents.ToList().Count} opponents: {string.Join(", ", foundOpponents)}" :
+                                Environment.NewLine + "You have not found any opponent");
 
     /// The number of moves the player has made
     /// </summary>
@@ -34,7 +35,7 @@ public class GameController
     /// <summary>
     /// Private list of opponents the player has found so far
     /// </summary>
-    private readonly List<Opponent> foundOpponents = new List<Opponent>();
+    public readonly List<Opponent> foundOpponents = new List<Opponent>();
 
     /// <summary>
     /// Returns true if the game is over
@@ -44,13 +45,16 @@ public class GameController
     /// <summary>
     /// A prompt to display to the player
     /// </summary>
-    public string Prompt => $"{MoveNumber}: Which direction do you want to go (or type 'check'): ";
+    public string Prompt => $" ■■■ {MoveNumber}: Which direction do you want to go (or type 'check'): ";
 
     public GameController()
     {
         House.ClearHidingPlaces();
         foreach (var opponent in Opponents)
+        {
             opponent.Hide();
+            Console.WriteLine(opponent.Name + " ► " + opponent.currentLocation);
+        }
 
         CurrentLocation = House.Entry;
     }
@@ -62,9 +66,9 @@ public class GameController
     /// <returns>True if the player can move in that direction, false oterwise</returns>
     public bool Move(Direction direction)
     {
-        bool canMove = CurrentLocation.Exits.ContainsKey(direction);
+        bool canMove = CurrentLocation.HasExit(direction);
 
-        if (canMove) CurrentLocation = CurrentLocation.Exits[direction];
+        if (canMove) CurrentLocation = CurrentLocation.MoveToExit(direction);
 
         return canMove;
     }
@@ -79,6 +83,24 @@ public class GameController
         // The ParseInput method parses a string that the user typed in. Parsing means analyzing text. You’ll use the Enum.TryParse method, just like you did with card values in Chapter 9.
 
         var lowerInput = input.ToLower();
+
+        if (lowerInput.Equals("exit") || lowerInput.Equals("quit"))
+        {
+            Environment.Exit(0);
+        }
+
+        if (lowerInput.Equals("save"))
+        {
+            SavedGame.Instance.Save(this);
+            return "========== Saved !";
+        }
+
+        if (lowerInput.Equals("load"))
+        {
+            SavedGame.Instance.Load(this);
+            return "========== Loaded !";
+        }
+
         if (lowerInput.Equals("check"))
         {
             MoveNumber++;

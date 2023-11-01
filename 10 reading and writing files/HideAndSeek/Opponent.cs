@@ -4,11 +4,14 @@ using System;
 namespace HideAndSeek
 {
     // Each opponent is represented by an Opponent object. Its Hide method navigates to a random room in the house with a hiding place and hides there.
+    [Serializable]
     public class Opponent
     {
-        public readonly string Name;
+        public  string Name { get; set; }
+
         public override string ToString() => Name;
-        private Location currentLocation;
+
+        public Location currentLocation { get; set; }
 
         public Opponent(string name) => Name = name;
 

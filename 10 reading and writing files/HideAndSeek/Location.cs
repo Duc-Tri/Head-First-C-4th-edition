@@ -19,8 +19,7 @@ namespace HideAndSeek
         /// <summary>
         /// The exits out of this location
         /// </summary>
-        public IDictionary<Direction, Location> Exits { get; private set; }
-        = new Dictionary<Direction, Location>();
+        private IDictionary<Direction, Location> Exits = new Dictionary<Direction, Location>();
 
         /// <summary>
         /// The constructor sets the location name
@@ -36,7 +35,8 @@ namespace HideAndSeek
         /// <summary>
         /// Returns a sequence of descriptions of the exits, sorted by direction
         /// </summary>
-        public IEnumerable<string> ExitList => Exits.Select(pair => pair.Value.ToString()).OrderBy(x => x);
+        
+        private IEnumerable<string> ExitList => Exits.Select(pair => pair.Value.ToString()).OrderBy(x => x);
 
         /// <summary>
         /// Adds an exit to this location
@@ -92,6 +92,21 @@ namespace HideAndSeek
             }
 
             return desc;
+        }
+
+        internal bool HasExit(Direction direction)
+        {
+            return Exits.ContainsKey(direction);
+        }
+
+        internal Location MoveToExit(Direction direction)
+        {
+            return Exits[direction];
+        }
+
+        internal Location RandomExit()
+        {
+            return Exits.ElementAt(House.Random.Next(Exits.Count)).Value;
         }
     }
 }
