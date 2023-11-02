@@ -35,7 +35,7 @@ namespace HideAndSeek
         /// <summary>
         /// Returns a sequence of descriptions of the exits, sorted by direction
         /// </summary>
-        
+
         private IEnumerable<string> ExitList => Exits.Select(pair => pair.Value.ToString()).OrderBy(x => x);
 
         /// <summary>
@@ -108,5 +108,7 @@ namespace HideAndSeek
         {
             return Exits.ElementAt(House.Random.Next(Exits.Count)).Value;
         }
+
     }
+
 }

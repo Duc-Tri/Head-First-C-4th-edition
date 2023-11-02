@@ -1,16 +1,14 @@
 ﻿using HideAndSeek;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 
 public class GameController
 {
     /// <summary>
     /// The player's current location in the house
     /// </summary>
-    public Location CurrentLocation { get; private set; }
+    public Location CurrentLocation { get; set; }
 
     /// <summary>
     /// Returns the the current status to show to the player
@@ -22,14 +20,14 @@ public class GameController
 
     /// The number of moves the player has made
     /// </summary>
-    public int MoveNumber { get; private set; } = 1;
+    public int MoveNumber { get; set; } = 1;
 
     /// <summary>
     /// Private list of opponents the player needs to find
     /// </summary>
     public readonly IEnumerable<Opponent> Opponents = new List<Opponent>()
      {
-     new Opponent("Joe"), new Opponent("Bob"), new Opponent("Ana"), new Opponent("Owen"), new Opponent("Jimmy"),
+        new Opponent("Joe"), new Opponent("Bob"), new Opponent("Ana"), new Opponent("Owen"), new Opponent("Jimmy"),
      };
 
     /// <summary>
@@ -49,14 +47,18 @@ public class GameController
 
     public GameController()
     {
+        ClearHouseHideOpponents();
+        CurrentLocation = House.Entry;
+    }
+
+    public void ClearHouseHideOpponents()
+    {
         House.ClearHidingPlaces();
         foreach (var opponent in Opponents)
         {
             opponent.Hide();
             Console.WriteLine(opponent.Name + " ► " + opponent.currentLocation);
         }
-
-        CurrentLocation = House.Entry;
     }
 
     /// <summary>
@@ -84,11 +86,13 @@ public class GameController
 
         var lowerInput = input.ToLower();
 
+        // ■■■■■■■■■ EXIT
         if (lowerInput.Equals("exit") || lowerInput.Equals("quit"))
         {
             Environment.Exit(0);
         }
 
+        // ■■■■■■■■■ SAVE / LOAD
         if (lowerInput.Equals("save"))
         {
             SavedGame.Instance.Save(this);
@@ -98,9 +102,13 @@ public class GameController
         if (lowerInput.Equals("load"))
         {
             SavedGame.Instance.Load(this);
-            return "========== Loaded !";
+            foreach (var opponent in foundOpponents)
+                Console.WriteLine(opponent.Name + " ►►► " + opponent.currentLocation);
+
+            return "========== Loaded ! " + MoveNumber;
         }
 
+        // ■■■■■■■■■ CHECK
         if (lowerInput.Equals("check"))
         {
             MoveNumber++;
@@ -116,6 +124,7 @@ public class GameController
             return $"You found {foundInPlace.Count} opponent{(foundInPlace.Count > 1 ? "s" : "")} hiding {hidingLocation.HidingPlace}";
         }
 
+        // ■■■■■■■■■ 8 DIRECTIONS
         foreach (var d in Enum.GetNames(typeof(Direction)).ToList())
         {
             if (d.ToLower().Equals(lowerInput))
