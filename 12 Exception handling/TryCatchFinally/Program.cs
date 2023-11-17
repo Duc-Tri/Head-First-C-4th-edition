@@ -9,16 +9,10 @@ namespace TryCatchFinally
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Factorielle(60));
             Dummy d = new Dummy();
             Console.WriteLine(d);
             Console.WriteLine(d.lints);
             TryCatchFinallyTest(null);
-        }
-
-        private static ulong Factorielle(ulong v)
-        {
-            return (v > 1) ? (v * Factorielle(v - 1)) : 1;
         }
 
         static void TryCatchFinallyTest(string filename)
@@ -83,4 +77,5 @@ namespace TryCatchFinally
             }
         }
     }
+
 }
