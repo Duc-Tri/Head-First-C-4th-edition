@@ -9,11 +9,11 @@ namespace ClassTests
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Factorielle(60));
+            //Console.WriteLine(Factorielle(60));
 
             Console.WriteLine("-------------");
 
-            TestAbstractOverrideNew();
+            //TestAbstractOverrideNew();
         }
 
         private static void TestAbstractOverrideNew()
@@ -25,30 +25,35 @@ namespace ClassTests
             childTypeB.MethodAbstract();
             childTypeB.MethodVirtual();
 
-            Console.WriteLine("===== Child class, child type instantiate, new method");
+            Console.WriteLine("\n===== Child class, child type instantiate, new method");
             ChildTypeC childTypeC = new ChildTypeC();
             childTypeC.MethodAbstract();
             childTypeC.MethodVirtual();
 
-            Console.WriteLine("===== Abstract class, child type instantiate, override method");
+            Console.WriteLine("\n===== Abstract parent class, child type instantiate, override method");
             TypeA weirdoB = new ChildTypeB();
             weirdoB.MethodAbstract();
             weirdoB.MethodVirtual();
 
-            Console.WriteLine("===== Abstract class, child type instantiate, new method");
+            Console.WriteLine("\n===== Abstract parent class, child type instantiate, new method (hides parent's)");
             TypeA weirdoC = new ChildTypeC();
             weirdoC.MethodAbstract();
             weirdoC.MethodVirtual();
+            Console.WriteLine("--- conversion of type, new method");
+            ((ChildTypeC)weirdoC).MethodVirtual();
 
-            Console.WriteLine("===== ChildOfNormalClass class, child type instantiate ");
+            Console.WriteLine("\n===== ChildOfNormalClass class, child type instantiate ");
             ChildOfNormalClass childOfNormalClass = new ChildOfNormalClass();
             childOfNormalClass.MethodToOverride();
             childOfNormalClass.MethodToHide();
 
-            Console.WriteLine("===== Normal class, child type instantiate ");
+            Console.WriteLine("\n===== Normal class, child type instantiate, without override ");
             NormalClass childOfNormalClass1 = new ChildOfNormalClass();
             childOfNormalClass1.MethodToOverride();
             childOfNormalClass1.MethodToHide();
+            Console.WriteLine("--- conversion of type, new method");
+            ((ChildOfNormalClass)childOfNormalClass1).MethodToOverride();
+            ((ChildOfNormalClass)childOfNormalClass1).MethodToHide();
         }
 
         private static ulong Factorielle(ulong v)
