@@ -7,16 +7,13 @@ namespace BaseBall
         public Pitcher(Ball ball) => ball.BallInPlay += BallInPlayEventHandler;
 
         private int pitchNumber = 0;
-        private void BallInPlayEventHandler(object sender, EventArgs e)
+        private void BallInPlayEventHandler(object sender, BallEventArgs e)
         {
             pitchNumber++;
-            if (e is BallEventArgs ballEventArgs)
-            {
-                if (ballEventArgs.Distance < 95 && ballEventArgs.Angle < 60)
-                    Console.WriteLine($"Pitch #{pitchNumber}: I caught the ball");
-                else
-                    Console.WriteLine($"Pitch #{pitchNumber}: I covered first base");
-            }
+            if (e.Distance < 95 && e.Angle < 60)
+                Console.WriteLine($"Pitch #{pitchNumber}: I caught the ball");
+            else
+                Console.WriteLine($"Pitch #{pitchNumber}: I covered first base");
         }
     }
 }
