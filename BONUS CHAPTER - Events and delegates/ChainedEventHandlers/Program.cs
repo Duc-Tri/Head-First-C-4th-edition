@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChainedEventHandlers
 {
@@ -26,9 +21,10 @@ namespace ChainedEventHandlers
             var myEvent = new Talker();
             while (true)
             {
+                // You can chain the same method onto an event multiple times.When the event is raised, it will call all of the chained methods in the order that they were added.
+
                 Console.Write("1 to chain SaySomething, 2 to chain SaySomethingElse, or a message: ");
                 var line = Console.ReadLine();
-                // You can chain the same method onto an event multiple times.When the event is raised, it will call all of the chained methods in the order that they were added.
                 switch (line)
                 {
                     case "1":

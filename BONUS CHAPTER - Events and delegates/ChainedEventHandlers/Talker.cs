@@ -8,4 +8,5 @@ namespace ChainedEventHandlers
 
         public void OnTalkToMe(string message) => TalkToMe?.Invoke(this, new TalkEventArgs(message));
     }
+
 }
