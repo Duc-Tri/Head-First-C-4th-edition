@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StreamReaderTest
 {
@@ -21,7 +17,7 @@ namespace StreamReaderTest
             writer.WriteLine();
             writer.WriteLine("We’ve discovered the Swindler’s terrible plan:");
 
-            while(!reader.EndOfStream)
+            while (!reader.EndOfStream)
             {
                 var lienFromThePlan = reader.ReadLine();
                 writer.WriteLine($"The plan ->{lienFromThePlan}");

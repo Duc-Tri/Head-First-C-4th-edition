@@ -1,6 +1,5 @@
 ﻿using HideAndSeek;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,7 +61,7 @@ namespace HideAndSeekTests
         public void TestExitList()
         {
             List<string> exits = new List<string> { "East Room", "North Room", "Room01", "Room02", "Room04", "Room05", "Room06", "Room07", "Room08", "Room09", "Room10", "Room11" };
-           Assert.AreEqual(string.Join("-", exits), string.Join("-", center.ExitList.ToList()));
+            Assert.AreEqual(string.Join("-", exits), string.Join("-", center.ExitList.ToList()));
         }
 
         /// <summary>

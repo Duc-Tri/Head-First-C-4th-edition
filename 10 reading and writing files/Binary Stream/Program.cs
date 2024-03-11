@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Binary_Stream
 {
@@ -20,8 +15,6 @@ namespace Binary_Stream
             BinaryReaderTest2();
 
         }
-
-
 
         static void BinaryWriterTest()
         {
@@ -79,4 +72,3 @@ namespace Binary_Stream
         }
     }
 }
-

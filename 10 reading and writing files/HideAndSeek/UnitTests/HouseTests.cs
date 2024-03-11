@@ -1,10 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace HideAndSeekTests
+﻿namespace HideAndSeekTests
 {
     using HideAndSeek;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
     using System.Linq;
 
     [TestClass]

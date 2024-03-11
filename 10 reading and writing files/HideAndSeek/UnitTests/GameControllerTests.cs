@@ -1,5 +1,4 @@
-﻿
-namespace HideAndSeekTests
+﻿namespace HideAndSeekTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using HideAndSeek;

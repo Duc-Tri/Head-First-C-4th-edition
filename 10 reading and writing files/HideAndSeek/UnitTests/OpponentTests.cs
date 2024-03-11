@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HideAndSeek;
 using System.Linq;
-using System.Xml.Linq;
-using System;
 
 namespace HideAndSeekTests
 {

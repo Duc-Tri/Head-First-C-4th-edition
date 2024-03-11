@@ -1,7 +1,4 @@
-﻿
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Runtime.Intrinsics.X86;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 

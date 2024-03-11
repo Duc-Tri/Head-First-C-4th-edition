@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Unicode_Test
 {
@@ -23,9 +20,6 @@ namespace Unicode_Test
             Console.WriteLine();
 
             Console.WriteLine(Encoding.UTF8.GetString(eurekaBytes));
-
-
-
         }
     }
 }
