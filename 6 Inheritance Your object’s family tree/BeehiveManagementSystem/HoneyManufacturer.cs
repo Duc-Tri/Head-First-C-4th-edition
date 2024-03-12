@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace BeehiveManagementSystem
+﻿namespace BeehiveManagementSystem
 {
     // This Bee subclass overrides DoJob to call the HoneyVault method to convert nectar to honey.
 
@@ -25,4 +18,5 @@ namespace BeehiveManagementSystem
         }
 
     }
+
 }

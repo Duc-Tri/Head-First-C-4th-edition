@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LINQTest
+﻿namespace LINQTest
 {
     internal class Card : IComparable<Card>
     {
@@ -38,5 +32,7 @@ namespace LINQTest
         {
             return new CardComparerByValue().Compare(this, other);
         }
+
     }
+
 }

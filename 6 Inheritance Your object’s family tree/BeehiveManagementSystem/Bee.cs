@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeehiveManagementSystem
+﻿namespace BeehiveManagementSystem
 {
     // Bee is the base class for all of the bee classes. Its WorkTheNextShift method calls the Honey Vault's ConsumeHoney method, and if it returns true calls DoJob.
-    internal abstract class Bee:IWorker
+    internal abstract class Bee : IWorker
     {
         public const string BEE_QUEEN = "Queen";
         public const string BEE_EGGCARE = "EggCare";
@@ -34,4 +28,5 @@ namespace BeehiveManagementSystem
         }
 
     }
+
 }

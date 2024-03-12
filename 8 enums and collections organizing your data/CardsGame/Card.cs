@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CardsGame
+﻿namespace CardsGame
 {
-
     internal class Card
     {
         public readonly Suits Suit;
@@ -34,5 +27,7 @@ namespace CardsGame
         {
             return Name;
         }
+
     }
+
 }

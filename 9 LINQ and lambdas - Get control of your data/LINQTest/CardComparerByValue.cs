@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LINQTest
+﻿namespace LINQTest
 {
     internal class CardComparerByValue : IComparer<Card>
     {

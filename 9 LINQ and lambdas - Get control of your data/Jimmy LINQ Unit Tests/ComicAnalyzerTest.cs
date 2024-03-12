@@ -1,7 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jimmy_LINQ;
-using System.Linq;
-using System;
 
 namespace Jimmy_LINQ_Unit_Tests
 {
@@ -89,4 +86,5 @@ namespace Jimmy_LINQ_Unit_Tests
         }
 
     }
+
 }

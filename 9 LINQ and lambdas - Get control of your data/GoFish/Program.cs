@@ -1,7 +1,5 @@
 ﻿using GoFish;
-using static System.Net.Mime.MediaTypeNames;
 using System.Linq;
-using System.Text;
 using System;
 
 // Here's our Program class with the entry point. Here’s a good example of separation of concerns: the Program class takes care of the input and output, while the GameController handles the actual gameplay, and it, in turn, depends on GameState and Player to do their parts.

@@ -37,7 +37,6 @@
             return false;
         }
 
-
         // The StatusReport property only has a get accessor that returns a string with separate lines with the amount of honey and the amount of nectar in the vault. If the honey is below LOW_LEVEL_WARNING, it adds a warning ("LOW HONEY - ADD A HONEY MANUFACTURER"). It does the same for the nectar field.
         public static string StatusReport
         {
@@ -50,4 +49,5 @@
         }
 
     }
+
 }

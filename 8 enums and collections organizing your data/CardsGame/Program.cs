@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CardsGame;
-using System.Xml.Linq;
 
 Console.WriteLine("========================================== HOUSE OF CARDS");
 
@@ -34,5 +33,5 @@ void TestList(int numCards)
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 TestList(20);
-deck.Sort(new CardComparer());  
+deck.Sort(new CardComparer());
 PrintCards(deck);

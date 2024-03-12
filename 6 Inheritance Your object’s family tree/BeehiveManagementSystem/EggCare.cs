@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeehiveManagementSystem
+﻿namespace BeehiveManagementSystem
 {
     // This Bee subclass keeps a reference to the Queen, and overrides DoJob to call the Queen’s CareForEggs method.
 
@@ -28,4 +22,5 @@ namespace BeehiveManagementSystem
         }
 
     }
+
 }

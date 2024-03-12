@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 
 // Unit tests only test public class members. We included a private method called ComputerPlayersPlayNextRound, which is called by NextRound.You won’t test that method directly—but you’ll know that it works correctly if the unit test for the NextRound method passes.
 namespace GoFish

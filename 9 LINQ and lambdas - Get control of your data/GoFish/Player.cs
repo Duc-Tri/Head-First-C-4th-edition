@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace GoFish
 {
     using System.Collections.Generic;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ducks_Collection
+﻿namespace Ducks_Collection
 {
     internal class DuckComparerByKind : IComparer<Duck>
     {
@@ -16,5 +10,7 @@ namespace Ducks_Collection
 
             return 0;
         }
+
     }
+
 }

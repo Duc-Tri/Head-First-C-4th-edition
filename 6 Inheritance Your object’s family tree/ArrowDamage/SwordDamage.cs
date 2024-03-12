@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ArrowDamage
+﻿namespace ArrowDamage
 {
     class SwordDamage
     {
@@ -81,6 +77,7 @@ namespace ArrowDamage
             roll = startingRoll;
             CalculateDamage();
         }
+
     }
 
 }

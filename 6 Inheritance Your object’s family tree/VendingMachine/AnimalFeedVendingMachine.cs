@@ -10,6 +10,7 @@
         {
             return money >= 1.25M;
         }
+
     }
 
 }

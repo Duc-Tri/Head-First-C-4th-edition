@@ -1,8 +1,4 @@
 ﻿using LINQTest;
-using System;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Xml.Linq;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");

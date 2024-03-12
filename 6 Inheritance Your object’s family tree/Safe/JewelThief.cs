@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Safe
 {
@@ -14,5 +10,7 @@ namespace Safe
             stolenJewels = safeContents;
             Console.WriteLine($"I'm stealing the jewels! I stole: {stolenJewels}");
         }
+
     }
+
 }

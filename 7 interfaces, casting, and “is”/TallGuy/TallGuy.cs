@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TallGuy
 {
@@ -22,5 +18,7 @@ namespace TallGuy
         {
             Console.WriteLine($"My name is {Name} and I'm {Height} inches tall.");
         }
+
     }
+
 }

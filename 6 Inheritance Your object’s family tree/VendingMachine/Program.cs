@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VendingMachine
 {
@@ -13,5 +9,7 @@ namespace VendingMachine
             VendingMachine machine = new AnimalFeedVendingMachine();
             Console.WriteLine(machine.Dispense(2m));
         }
+
     }
+
 }

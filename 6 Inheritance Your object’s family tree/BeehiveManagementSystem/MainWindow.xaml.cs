@@ -1,12 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Threading;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Xml.Linq;
 
 // Some more details about how the Beehive Management System works
 // • The goal is to get the TOTAL WORKERS line in the status report (which lists the total number of assigned workers) to go as high as possible—and that all depends on which workers you add and when you add them. Workers drain honey: if you’ve got too many of one kind of worker, the honey starts to go down. As you run the program, watch the honey and nectar numbers. After the first few shifts, you’ll get a low honey warning (so add a honey manufacturer); after a few more, you’ll get a low nectar warning (so add a nectar collector)—after that, you need to figure out how to staff the hive. How high can you get TOTAL WORKERS to go before the honey runs out?
@@ -59,5 +53,7 @@ namespace BeehiveManagementSystem
             //statusReport.Text = queen.StatusReport; // NEW databinding
             btnAssignJob.IsEnabled = (queen.UnassignedWorkers >= 1f);
         }
+
     }
+
 }

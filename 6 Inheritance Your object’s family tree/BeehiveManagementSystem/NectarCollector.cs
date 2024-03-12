@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace BeehiveManagementSystem
+﻿namespace BeehiveManagementSystem
 {
     // The NectarCollector class collects nectar each shift and adds it to the vault (overrides DoJob to call the HoneyVault method to collect nectar.)
     internal class NectarCollector : Bee
@@ -20,5 +13,7 @@ namespace BeehiveManagementSystem
         }
 
         protected override void DoJob() => HoneyVault.CollectNectar(NECTAR_COLLECTED_PER_SHIFT);
+
     }
+
 }

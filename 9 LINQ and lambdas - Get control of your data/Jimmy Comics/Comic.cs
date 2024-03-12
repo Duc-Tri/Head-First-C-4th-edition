@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Jimmy_Comics
+﻿namespace Jimmy_Comics
 {
     internal class Comic
     {
@@ -37,7 +31,6 @@ namespace Jimmy_Comics
             { 97, 35.25M },
         };
 
-
-
     }
+
 }

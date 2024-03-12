@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TallGuy
 {
@@ -15,5 +11,7 @@ namespace TallGuy
             Console.WriteLine($"The tall guy has{tallGuy.FunnyThingIHave}");
             tallGuy.Honk();
         }
+
     }
+
 }

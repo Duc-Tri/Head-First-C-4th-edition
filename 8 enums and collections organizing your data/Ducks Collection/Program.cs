@@ -3,7 +3,6 @@ using Ducks_Collection;
 
 Console.WriteLine("Hello, World!");
 
-
 void PrintDucks(List<Duck> ducks)
 {
     foreach (Duck duck in ducks)

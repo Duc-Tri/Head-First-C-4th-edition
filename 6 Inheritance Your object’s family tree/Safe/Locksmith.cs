@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Security.Cryptography;
-using System;
-
-namespace Safe
+﻿namespace Safe
 {
     class Locksmith
     {
@@ -18,5 +14,7 @@ namespace Safe
         {
             owner.ReceiveContents(safeContents);
         }
+
     }
+
 }

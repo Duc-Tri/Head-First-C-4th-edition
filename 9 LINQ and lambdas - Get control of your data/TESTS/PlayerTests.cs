@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using global::GoFish;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ namespace TESTS
 {
     // Unit tests aren’t just useful for making sure your code works.They’re also a great way to understand what your code is supposed to do. Part of your job is to read through these unit tests to figure out what the Player class should do. You’ll know your class is working when all of the unit tests pass.
     [TestClass]
-    public  class PlayerTests
+    public class PlayerTests
     {
         /*
         public  void TestAll()
@@ -27,7 +26,7 @@ namespace TESTS
         */
 
         [TestMethod]
-        public  void TestGetNextHand()
+        public void TestGetNextHand()
         {
             // GetNewHand returns up to 5 cards from the deck.CollectionAssert can’t compare cards, so we used the Select LINQ method to convert them to lists of card names to compare.
 
@@ -41,7 +40,7 @@ namespace TESTS
         }
 
         [TestMethod]
-        public  void TestDoYouHaveAny()
+        public void TestDoYouHaveAny()
         {
             // The test sets up an instance of Player with a set of cards.We used the constructor that take a name and a sequence of cards to start with a hand that has two jacks, three threes, and a four.
             IEnumerable<Card> cards = new List<Card>()
@@ -90,7 +89,7 @@ namespace TESTS
         // Lucky for us, the Next and NextInt methods in the.NET Random class are virtual, so we created a MockRandom class that extends System.Random but overrides those methods. We added a ValueToReturn property to tell the mock object what int value its Next and NextInt methods should return. That lets us test methods that rely on random numbers.
 
         [TestMethod]
-        public  void TestAddCardsAndPullOutBooks()
+        public void TestAddCardsAndPullOutBooks()
         {
             // Carefully read through the code in this test method—between the test and the XML comments, you can figure out what the AddCardsAndPullOutBooks method does.
             IEnumerable<Card> cards = new List<Card>()
@@ -121,7 +120,7 @@ namespace TESTS
         }
 
         [TestMethod]
-        public  void TestDrawCard()
+        public void TestDrawCard()
         {
             // The DrawCard method pulls the next card out of the deck and adds it to the player’s hand. What happens if the deck is empty? How would you test that?
             var player = new Player("Owen", new List<Card>());
@@ -131,7 +130,7 @@ namespace TESTS
         }
 
         [TestMethod]
-        public  void TestRandomValueFromHand()
+        public void TestRandomValueFromHand()
         {
             // We replaced the Player.Random reference with a reference to a new MockRandom object with ValueToReturn set to return a specific value.
             var player = new Player("Owen", new Deck());
@@ -147,6 +146,5 @@ namespace TESTS
         }
 
     }
-
 
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ducks_Collection
+﻿namespace Ducks_Collection
 {
     public enum KindOfDuck
     {
@@ -31,6 +25,6 @@ namespace Ducks_Collection
             return $"{Size}inch {Kind}";
         }
 
-    } // end class ============================================================
+    }
 
 }

@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Cafeteria;
-using System;
-
 
 void CreateLumberjackAndFlapjacks()
 {

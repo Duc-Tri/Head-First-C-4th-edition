@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GoFish;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
-using System.Text;
 
 namespace TESTS
 {
@@ -50,7 +47,7 @@ namespace TESTS
                 Environment.NewLine + "Brittney has 5 cards and 0 books" +
                 Environment.NewLine + "The stock has 41 cards" +
                 Environment.NewLine, gameController.Status);
-            
+
             /*
                 Owen asked Brittney for Sixes
                 Owen drew a card
