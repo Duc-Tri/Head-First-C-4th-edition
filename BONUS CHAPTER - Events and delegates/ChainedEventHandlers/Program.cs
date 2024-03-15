@@ -31,12 +31,15 @@ namespace ChainedEventHandlers
                         Console.WriteLine("Adding SaySomething");
                         myEvent.TalkToMe += SaySomething;
                         break;
+
                     case "2":
                         Console.WriteLine("Adding SaySomethingElse");
                         myEvent.TalkToMe += SaySomethingElse;
                         break;
+
                     case "":
                         return;
+
                     default:
                         count = 1;
                         Console.WriteLine("Raising the TalkToMe event");
