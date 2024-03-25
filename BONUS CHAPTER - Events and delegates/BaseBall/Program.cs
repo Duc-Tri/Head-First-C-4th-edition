@@ -25,7 +25,8 @@ namespace BaseBall
                     if (int.TryParse(Console.ReadLine(), out int distance))
                     {
                         BallEventArgs ballEventArgs = new BallEventArgs(angle, distance);
-                        ball.OnBallInPlay(ballEventArgs);
+                        var bat = ball.GetNewBat();
+                        bat.HitTheBall(ballEventArgs);
                     }
                     else
                         running = false;
