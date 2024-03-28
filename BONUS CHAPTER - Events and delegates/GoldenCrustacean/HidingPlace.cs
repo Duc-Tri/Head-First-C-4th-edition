@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GoldenCrustacean
+﻿namespace GoldenCrustacean
 {
     internal class HidingPlace
     {
