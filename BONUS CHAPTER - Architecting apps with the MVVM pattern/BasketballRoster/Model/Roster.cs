@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace BasketballRoster.Model
+﻿namespace BasketballRoster.Model
 {
     class Roster
     {

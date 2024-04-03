@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:BasketballRoster"
              StartupUri="View/LeagueWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
