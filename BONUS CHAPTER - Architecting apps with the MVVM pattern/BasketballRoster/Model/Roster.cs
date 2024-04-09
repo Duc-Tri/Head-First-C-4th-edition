@@ -1,8 +1,8 @@
 ﻿namespace BasketballRoster.Model
 {
-    class Roster
+    public class Roster
     {
-        public string TeamName { get; private set; }
+        public string TeamName { get; set; }
 
         private readonly List<Player> _players = new List<Player>();
         public IEnumerable<Player> Players

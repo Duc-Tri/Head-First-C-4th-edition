@@ -1,6 +1,6 @@
 ﻿namespace BasketballRoster.Model
 {
-    class Player
+    public class Player
     {
         public string Name { get; private set; }
         public int Number { get; private set; }
