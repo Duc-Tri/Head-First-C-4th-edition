@@ -7,17 +7,17 @@ namespace BasketballRoster.ViewModel
 
     public class LeagueViewModel
     {
-        public RosterViewModel JimmysTeam {get;set;}
-        public RosterViewModel AnasTeam {get;set;}
+        public RosterViewModel JimmysTeam { get; set; }
+        public RosterViewModel AnasTeam { get; set; }
 
         // LeagueViewModel exposes RosterViewModel objects that a RosterControl can use as its data context.
         // It creates the Roster model object for the RosterViewModel to use.
         public LeagueViewModel()
         {
-            var anasRoster=new Roster("The Bombers", GetBomberPlayers());
+            var anasRoster = new Roster("The Bombers", GetBomberPlayers());
             AnasTeam = new RosterViewModel(anasRoster);
 
-            var jimmysRoter=new Roster("The Amazins", GetAmazinPlayers());
+            var jimmysRoter = new Roster("The Amazins", GetAmazinPlayers());
             JimmysTeam = new RosterViewModel(jimmysRoter);
         }
 
@@ -47,9 +47,10 @@ namespace BasketballRoster.ViewModel
             new Player("Kim", 16, true),
             new Player("Bertha", 23, false),
             new Player("Ed",21, false),
-            };        
+            };
         }
 
     }
+
 }
 
