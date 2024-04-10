@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="300">
 
-    <Border BorderThickness="2" BorderBrush="Blue" CornerRadius="6" Background="Black">
+    <Border BorderThickness="2" BorderBrush="Blue" CornerRadius="6" Background="White">
 
         <StackPanel Margin="20">
         
@@ -15,7 +15,7 @@
 
             <TextBlock Foreground="White" FontFamily="Segoe" FontSize="16px" Text="Starting Players" Margin="0,5,0,0"/>
 
-            <ListBox Background="Black" Foreground="White" Margin="0,5,0,0" ItemsSource="{Binding Starters}" />
+            <ListBox Background="Gray" Foreground="White" Margin="0,5,0,0" ItemsSource="{Binding Starters}" />
 
             <TextBlock Foreground="White" FontFamily="Segoe" FontSize="16px" Text="Bench Players" Margin="0,5,0,0"/>
         
