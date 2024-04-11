@@ -4,7 +4,7 @@ namespace Stopwatch.Model
     // If _startedTime is equal to that time, then the stopwatch isn’t running.
     // If not, that’s when the stopwatch was started.
     // It can calculate the elapsed time by subtracting _startedTime from the current date and time. 
-    class StopwatchModel
+    public class StopwatchModel
     {
         private DateTime _startedTime;
 
@@ -37,7 +37,7 @@ namespace Stopwatch.Model
         /// <summary>
         /// Resets the stopwatch by setting its started time to DateTime.MinValue
         /// </summary>
-        private void Reset()=>_startedTime=DateTime.MinValue;
+        public void Reset()=>_startedTime=DateTime.MinValue;
         // To reset the stopwatch and stop it running, we set its started time to DateTime.MinValue.
 
     }
