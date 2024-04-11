@@ -3,12 +3,12 @@ namespace Stopwatch.View
     using System;
     using System.Net.Quic;
     using System.Threading;
-    using ViewModel;    
+    using ViewModel;
 
     public class StopwatchView
     {
         private StopwatchViewModel _viewModel = new StopwatchViewModel();
-        private bool _quit =false;
+        private bool _quit = false;
 
         /// <summary>
         /// Clears the console and displays the stopwatch
@@ -16,7 +16,7 @@ namespace Stopwatch.View
         public StopwatchView()
         {
             ClearScreenAndAddHelpMessage();
-            
+
             // The view uses a System.Threading.Timer.
             // It’s a different kind of timer than the one you used in Chapter 1. That timer raised an event every time it ticked. 
             // The timer you’ll use now is different—it uses a callback.
@@ -25,11 +25,11 @@ namespace Stopwatch.View
             // Thread.Sleep keeps the app from using CPU cycles while it’s waiting for the next timer tick.
 
             TimerCallback timerCallback = UpdateTimeCallback;
-            var _timer=new Timer(timerCallback,null,0,10);
-            while(!_quit)
+            var _timer = new Timer(timerCallback, null, 0, 10);
+            while (!_quit)
                 Thread.Sleep(100);
 
-            Console.CursorVisible=true;
+            Console.CursorVisible = true;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace Stopwatch.View
         private void ClearScreenAndAddHelpMessage()
         {
             Console.Clear();
-            Console.CursorTop=3; // This moves the cursor to the fourth row (rows start at 0)
+            Console.CursorTop = 3; // This moves the cursor to the fourth row (rows start at 0)
             Console.WriteLine("Space to start, R to reset, any other key to quit");
-            Console.CursorVisible=false;
+            Console.CursorVisible = false;
         }
 
         /// <summary>
@@ -48,14 +48,14 @@ namespace Stopwatch.View
         /// </summary>
         private void UpdateTimeCallback(object? state)
         {
-            if(Console.KeyAvailable)
+            if (Console.KeyAvailable)
             {
-                ConsoleKeyInfo cki= Console.ReadKey(true);
-                if(cki.Key==ConsoleKey.Spacebar)
+                ConsoleKeyInfo cki = Console.ReadKey(true);
+                if (cki.Key == ConsoleKey.Spacebar)
                 {
                     _viewModel.StartStop();
                 }
-                else if(cki.Key==ConsoleKey.R)
+                else if (cki.Key == ConsoleKey.R)
                 {
                     _viewModel.Reset();
                 }
@@ -68,8 +68,8 @@ namespace Stopwatch.View
 
         private void Quit()
         {
-            Console.CursorVisible=true;
-            Console.CursorTop=6;
+            Console.CursorVisible = true;
+            Console.CursorTop = 6;
 
             // and quit !
         }
@@ -79,13 +79,13 @@ namespace Stopwatch.View
         /// </summary>
         public void WriteCurrentTime()
         {
-            Console.CursorTop=1; // This moves the cursor to the second row (rows start at 0)
-            Console.CursorLeft=23; // This moves the cursor to the 23rd column (starting at 0)
-            
-            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            var time= "${_viewModel.Hours:_viewModel.Minutes:_viewModel.Seconds._viewModel.Tenths}";
+            Console.CursorTop = 1; // This moves the cursor to the second row (rows start at 0)
+            Console.CursorLeft = 23; // This moves the cursor to the 23rd column (starting at 0)
 
-            Console.Write(time); 
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            var time = "${_viewModel.Hours:_viewModel.Minutes:_viewModel.Seconds._viewModel.Tenths}";
+
+            Console.Write(time);
         }
 
     }
