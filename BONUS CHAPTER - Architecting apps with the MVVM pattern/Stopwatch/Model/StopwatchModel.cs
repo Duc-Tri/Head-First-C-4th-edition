@@ -8,6 +8,12 @@ namespace Stopwatch.Model
     {
         private DateTime _startedTime;
 
+        private bool _paused;
+
+        private DateTime _pausedAt;
+
+        private TimeSpan _totalPausedTime;
+
         /// <summary>
         /// The constructor resets the stopwatch
         /// </summary>
@@ -22,6 +28,7 @@ namespace Stopwatch.Model
             // It sets _startedTime to the current time to start the stopwatch – but only if it’s not running yet.
 
             get => _startedTime != DateTime.MinValue;
+
             set
             {
                 if (value && !Running) _startedTime = DateTime.Now;

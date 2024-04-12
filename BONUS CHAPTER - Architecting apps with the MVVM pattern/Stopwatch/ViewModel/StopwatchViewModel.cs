@@ -1,11 +1,21 @@
-using Stopwatch.Model;
-
 namespace Stopwatch.ViewModel
 {
+    using Stopwatch.Model;
 
     public class StopwatchViewModel
     {
-        private StopwatchModel _model;
+        private readonly StopwatchModel _model=new StopwatchModel();
+
+        public void StartStop() => _model.Running=true;
+
+        public void Reset() =>            _model.Reset();
+
+        public string Hours => _model.Elapsed.Hours.ToString("D2");
+        public string Minutes => _model.Elapsed.Minutes.ToString("D2");
+        public string Seconds => _model.Elapsed.Seconds.ToString("D2");
+        public object Tenths => ((int)(_model.Elapsed.Milliseconds / 100M)).ToString();
+
+
         public StopwatchModel Model
         {
             get
@@ -19,17 +29,6 @@ namespace Stopwatch.ViewModel
             if (!_model.Running)
                 _model.Running = true;
         }
-
-        public void StartStop() => throw new NotImplementedException();
-        public void Reset()
-        {
-            _model.Reset();
-        }
-
-        public string Hours => _model.Elapsed.Hours.ToString("D2");
-        public string Minutes => _model.Elapsed.Minutes.ToString("D2");
-        public string Seconds => _model.Elapsed.Seconds.ToString("D2");
-        public object Tenths => (_model.Elapsed.Milliseconds / 100M).ToString("D2");
 
     }
 

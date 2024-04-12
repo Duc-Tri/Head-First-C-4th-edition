@@ -1,7 +1,6 @@
 namespace Stopwatch.View
 {
     using System;
-    using System.Net.Quic;
     using System.Threading;
     using ViewModel;
 
@@ -50,20 +49,28 @@ namespace Stopwatch.View
         {
             if (Console.KeyAvailable)
             {
-                ConsoleKeyInfo cki = Console.ReadKey(true);
-                if (cki.Key == ConsoleKey.Spacebar)
+                // Checking Console.KeyAvailable keeps Console.
+                // ReadKey from pausing your app because it only reads the key if it's available.
+                switch(Console.ReadKey(true).KeyChar.ToString().ToUpper())
                 {
-                    _viewModel.StartStop();
-                }
-                else if (cki.Key == ConsoleKey.R)
-                {
-                    _viewModel.Reset();
-                }
-                else
-                {
-                    Quit();
+                    case " ":
+                        _viewModel.StartStop();
+                        break;
+
+                    case "R":
+                        _viewModel.Reset();
+                        break;
+
+                    // Making the cursor visible again and positioning it below the stopwatch resets the app so the operating system’s prompt looks normal.
+                    default:
+                        Console.CursorVisible=true;
+                        Console.CursorLeft=0;
+                        Console.CursorTop=5;
+                        _quit=true;
+                        break;
                 }
             }
+            WriteCurrentTime();
         }
 
         private void Quit()
@@ -82,8 +89,7 @@ namespace Stopwatch.View
             Console.CursorTop = 1; // This moves the cursor to the second row (rows start at 0)
             Console.CursorLeft = 23; // This moves the cursor to the 23rd column (starting at 0)
 
-            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            var time = "${_viewModel.Hours:_viewModel.Minutes:_viewModel.Seconds._viewModel.Tenths}";
+            var time = $"{_viewModel.Hours}:{_viewModel.Minutes}:{_viewModel.Seconds}.{_viewModel.Tenths}";
 
             Console.Write(time);
         }
