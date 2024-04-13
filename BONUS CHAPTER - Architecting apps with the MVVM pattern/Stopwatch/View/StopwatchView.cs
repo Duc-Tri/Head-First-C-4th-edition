@@ -51,7 +51,7 @@ namespace Stopwatch.View
             {
                 // Checking Console.KeyAvailable keeps Console.
                 // ReadKey from pausing your app because it only reads the key if it's available.
-                switch(Console.ReadKey(true).KeyChar.ToString().ToUpper())
+                switch (Console.ReadKey(true).KeyChar.ToString().ToUpper())
                 {
                     case " ":
                         _viewModel.StartStop();
@@ -63,10 +63,10 @@ namespace Stopwatch.View
 
                     // Making the cursor visible again and positioning it below the stopwatch resets the app so the operating system’s prompt looks normal.
                     default:
-                        Console.CursorVisible=true;
-                        Console.CursorLeft=0;
-                        Console.CursorTop=5;
-                        _quit=true;
+                        Console.CursorVisible = true;
+                        Console.CursorLeft = 0;
+                        Console.CursorTop = 5;
+                        _quit = true;
                         break;
                 }
             }
