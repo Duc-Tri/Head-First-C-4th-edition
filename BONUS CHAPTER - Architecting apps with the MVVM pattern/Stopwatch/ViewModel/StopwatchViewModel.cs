@@ -6,7 +6,7 @@ namespace Stopwatch.ViewModel
     {
         private readonly StopwatchModel _model = new StopwatchModel();
 
-        public void StartStop() => _model.Running = true;
+        public void StartStop() => _model.Running = !_model.Running;
 
         public void Reset() => _model.Reset();
 

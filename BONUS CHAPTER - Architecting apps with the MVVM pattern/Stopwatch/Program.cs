@@ -1,5 +1,5 @@
 ﻿using Stopwatch.View;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("MVVM STOPWATCH =========================");
 
 StopwatchView stopwatchView = new StopwatchView();
