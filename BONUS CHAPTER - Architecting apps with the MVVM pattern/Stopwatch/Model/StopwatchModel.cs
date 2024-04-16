@@ -16,6 +16,9 @@ namespace Stopwatch.Model
 
         private TimeSpan _totalPausedTime;
 
+        public TimeSpan LapTime { get; private set; }
+        public void SetLapTime() => LapTime = Elapsed;
+
         /// <summary>
         /// The constructor resets the stopwatch
         /// </summary>
@@ -73,6 +76,7 @@ namespace Stopwatch.Model
             _pausedAt = DateTime.MinValue;
             _paused = false;
             _totalPausedTime = TimeSpan.Zero;
+            LapTime = TimeSpan.Zero;
         }
         // To reset the stopwatch and stop it running, we set its started time to DateTime.MinValue.
 

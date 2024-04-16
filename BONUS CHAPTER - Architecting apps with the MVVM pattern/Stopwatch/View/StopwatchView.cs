@@ -38,7 +38,7 @@ namespace Stopwatch.View
         {
             Console.Clear();
             Console.CursorTop = 3; // This moves the cursor to the fourth row (rows start at 0)
-            Console.WriteLine("Space to start or stop, R to reset, any other key to quit");
+            Console.WriteLine("Space to start or stop, R to reset, L for Lap time, any other key to quit");
             Console.CursorVisible = false;
         }
 
@@ -59,6 +59,10 @@ namespace Stopwatch.View
 
                     case "R":
                         _viewModel.Reset();
+                        break;
+
+                    case "L":
+                        _viewModel.LapTime();
                         break;
 
                     // Making the cursor visible again and positioning it below the stopwatch resets the app so the operating system’s prompt looks normal.
@@ -82,16 +86,17 @@ namespace Stopwatch.View
         }
 
         /// <summary>
-        /// Writes the current time to the second row and 23rd column of the screen
+        /// Writes the current time to the second row and 24rd column of the screen
         /// </summary>
         public void WriteCurrentTime()
         {
             Console.CursorTop = 1; // This moves the cursor to the second row (rows start at 0)
-            Console.CursorLeft = 23; // This moves the cursor to the 23rd column (starting at 0)
+            Console.CursorLeft = 23; // This moves the cursor to the 24rd column (starting at 0)
 
             var time = $"{_viewModel.Hours}:{_viewModel.Minutes}:{_viewModel.Seconds}.{_viewModel.Tenths}";
+            var lapTime = $"{_viewModel.LapHours}:{_viewModel.LapMinutes}:{_viewModel.LapSeconds}.{_viewModel.LapTenths}";
 
-            Console.Write(time);
+            Console.Write($"{time} - lap time {lapTime}");
         }
 
     }
