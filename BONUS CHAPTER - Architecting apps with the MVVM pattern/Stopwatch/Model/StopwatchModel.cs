@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace Stopwatch.Model
 {
     // The model knows the stopwatch is reset when its time is equal DateTime.MinValue, a special value with the smallest valid time.

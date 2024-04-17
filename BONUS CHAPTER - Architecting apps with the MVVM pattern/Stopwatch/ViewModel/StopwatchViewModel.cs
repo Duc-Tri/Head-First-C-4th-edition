@@ -1,7 +1,6 @@
 namespace Stopwatch.ViewModel
 {
     using Stopwatch.Model;
-    using System;
 
     public class StopwatchViewModel
     {
