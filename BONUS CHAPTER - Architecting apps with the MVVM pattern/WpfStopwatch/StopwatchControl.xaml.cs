@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Stopwatch.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfStopwatch
 {
@@ -20,9 +10,38 @@ namespace WpfStopwatch
     /// </summary>
     public partial class StopwatchControl : UserControl
     {
+
+        DispatcherTimer _timer = new DispatcherTimer();
+        StopwatchViewModel _stopwatchViewModel;
+
         public StopwatchControl()
         {
             InitializeComponent();
+            _stopwatchViewModel = Resources["viewmodel"] as StopwatchViewModel;
+            _timer.Interval = TimeSpan.FromMilliseconds(100);
+            _timer.Tick += TimerTick;
+            _timer.Start();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            // When an object calls its PropertyChange event with PropertyName set to an empty string, it causes a control using it as data context to update all of its bound properties
+            _stopwatchViewModel.OnPropertyChanged(string.Empty);
+        }
+
+        private void StartStopButton_Click(object sender, RoutedEventArgs e)
+        {
+            _stopwatchViewModel.StartStop();
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs args)
+        {
+            _stopwatchViewModel.Reset();
+        }
+
+        private void LapButton_Click(object sender, RoutedEventArgs e)
+        {
+            _stopwatchViewModel.LapTime();
         }
     }
 }
