@@ -39,7 +39,7 @@
                 <Button Margin="20,20,20,0" FontSize="24" Click="StartStopButton_Click">
                     Start/Stop
                 </Button>
-                <Button Margin="0,20,20,0" FontSize="24" Click="RestButton_Click">
+                <Button Margin="0,20,20,0" FontSize="24" Click="ResetButton_Click">
                     Reset
                 </Button>
                 <Button Margin="0,20,0,0" FontSize="36" Click="LapButton_Click">

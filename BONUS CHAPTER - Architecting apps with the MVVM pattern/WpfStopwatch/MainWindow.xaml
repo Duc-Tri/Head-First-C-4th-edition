@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:WpfStopwatch"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+    <StackPanel VerticalAlignment="Center">
+        <local:StopwatchControl/>
+        <Rectangle Fill="Black" Width="800" Height="1"/>
+        <local:StopwatchControl/>
+
+    </StackPanel>
 </Window>

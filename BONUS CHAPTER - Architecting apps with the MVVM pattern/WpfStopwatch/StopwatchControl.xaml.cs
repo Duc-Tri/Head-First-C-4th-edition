@@ -17,7 +17,7 @@ namespace WpfStopwatch
         public StopwatchControl()
         {
             InitializeComponent();
-            _stopwatchViewModel = Resources["viewmodel"] as StopwatchViewModel;
+            _stopwatchViewModel = Resources["viewModel"] as StopwatchViewModel;
             _timer.Interval = TimeSpan.FromMilliseconds(100);
             _timer.Tick += TimerTick;
             _timer.Start();
