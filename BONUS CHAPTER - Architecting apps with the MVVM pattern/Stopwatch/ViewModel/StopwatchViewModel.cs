@@ -7,7 +7,7 @@ namespace Stopwatch.ViewModel
     {
         private readonly StopwatchModel _model = new StopwatchModel();
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void StartStop() => _model.Running = !_model.Running;
 

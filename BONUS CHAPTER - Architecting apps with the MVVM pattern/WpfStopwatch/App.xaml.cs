@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace WpfStopwatch
+namespace WpfStopWatch
 {
     /// <summary>
     /// Interaction logic for App.xaml
